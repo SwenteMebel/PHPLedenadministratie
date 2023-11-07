@@ -17,5 +17,5 @@ if(isset($_POST['naam']) && isset($_POST['email']) && isset($_POST['wachtwoord']
         
     $stmt->execute([$naam, $email, $hashpw]);
     header('Location: ../view/login.php');
-    die();
+    
 }

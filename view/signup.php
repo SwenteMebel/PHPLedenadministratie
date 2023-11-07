@@ -2,7 +2,7 @@
 
 <?php
 include_once "../controller/functions.php";
-session_unset();
+
 
 
 echo <<<_END

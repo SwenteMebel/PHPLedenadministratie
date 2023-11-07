@@ -1,11 +1,13 @@
 <?php 
 session_start()
 ?>
-
 <!DOCTYPE html>
 <head>
+    <meta charset="UTF-8">
     <title>LedenAdministratie Scheffer Keukens</title>
-    <link href='../css/main.css' alt='stylesheet'>
+
+    <!--Style-->
+    <link href='/css/main.css' rel='stylesheet'>
 </head>
 
 <body>
@@ -21,8 +23,8 @@ session_start()
                 echo "<li><a href='login.php'>Login</a></li>";
             } else {
                 echo "Ingelogd als $_SESSION[id]";
-                echo "<li><a href='#'>Leden</a></li>"; 
-                echo "<li><a href='#'>Registreer</a></li>";
+                echo "<li><a href='leden.php'>Leden</a></li>"; 
+                echo "<li><a href='signup.php'>Registreer</a></li>";
                 echo "<li><a href='../model/logout.model.php'>Logout</a></li>";
             }
         ?>

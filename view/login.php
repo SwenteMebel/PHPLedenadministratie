@@ -1,8 +1,6 @@
 <?php include_once "layout/header.php";?>
 
-<?php
-include "../controller/functions.php";
-session_unset();
+<?php include "../controller/functions.php";
 
 
 echo <<<_END
