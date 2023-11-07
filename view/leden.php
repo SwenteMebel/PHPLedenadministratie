@@ -20,8 +20,16 @@
                     Email: $email. <br>
                 </div>
                 <div class="knop">
-                    <button>Verwijderen</button>
-                    <button>Wijzigen</button>
+                    <form method='post' action='../model/leden.model.php'>
+                    <input type='hidden' name='delete'>
+                    <input type='hidden' name='id' value='$id'>
+                    <input type='submit' value='verwijderen'>
+                    </form>
+                    <form  action='wijzigen.php'>
+                    <input type='hidden' name='delete'>
+                    <input type='hidden' name='id' value='$id'>
+                    <input type='submit' value='wijzigen'>
+                    </form>
                 </div>
 
             </div>
