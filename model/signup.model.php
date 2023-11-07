@@ -16,8 +16,6 @@ if(isset($_POST['naam']) && isset($_POST['email']) && isset($_POST['wachtwoord']
     $stmt->bindParam(3, $hashpw, PDO::PARAM_STR, 255);
         
     $stmt->execute([$naam, $email, $hashpw]);
-    die("<div>Account created, your name is $naam
-    <a data-transition='slide'
-      href='login.php?'>click here</a>
-      to login.</div>");
+    header('Location: ../view/login.php');
+    die();
 }

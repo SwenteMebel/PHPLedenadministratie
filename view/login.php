@@ -1,3 +1,5 @@
+<?php include_once "layout/header.php";?>
+
 <?php
 include "../controller/functions.php";
 session_unset();
@@ -11,4 +13,6 @@ echo <<<_END
 
 </form>
 _END;
+?>
 
+<?php include_once "layout/footer.php";?>

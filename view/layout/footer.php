@@ -1,3 +1,3 @@
-<?php
-echo "dit is een footer";
-?>
+
+</body>
+</html>

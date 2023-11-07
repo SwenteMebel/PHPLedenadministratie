@@ -16,13 +16,11 @@ if(isset($_POST['naam'])){
             $error = "Onjuist wachtwoord/gebruikersnaam, probeer het opnieuw";
             echo $error;
         } else {
-            $_SESSION['naam'] = $naam;
-            $_SESSION['wachtwoord'] = $wachtwoord;
-
-            die("<div class='center'>You are now logged in. Please
-             <a data-transition='slide'
-               href='../view/home.php?view=$naam'>click here</a>
-               to continue.</div></div></body></html>");
+            session_start();
+            $_SESSION['id'] = $naam;
+            header("Location: ../view/home.php");
+            exit();
+           
         }
     } 
 }

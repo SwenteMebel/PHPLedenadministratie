@@ -1,8 +1,12 @@
-<?php
-include_once "layout/header.php";
+<?php include_once "layout/header.php";?>
 
-echo " Welkom $naam "; 
+<?php if(isset($_SESSION['id'])){
+echo " Welkom $_SESSION[id] ";
+}
 
 
-include_once "layout/footer.php";
+
 ?>
+
+
+<?php include_once "layout/footer.php";?>
