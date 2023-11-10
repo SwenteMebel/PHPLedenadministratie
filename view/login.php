@@ -9,6 +9,7 @@ echo <<<_END
 <input type='password' name='wachtwoord' placeholder='wachtwoord'><br><br>
 <input type='submit' value='Login'>
 
+
 </form>
 _END;
 ?>
