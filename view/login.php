@@ -1,15 +1,16 @@
 <?php include_once "layout/header.php";?>
+<?php include "../controller/functions.php";?>
+<?php include "../model/login.model.php"?>
 
-<?php include "../controller/functions.php";
-
-
+<span class='error'><?php echo $legeinput;?></span>
+<span class='error'><?php echo $onjuistPW;?></span>
+<span class='error'><?php echo $noName;?></span>
+<?php
 echo <<<_END
 <form method='post' action='../model/login.model.php'>
 <input type="text" name="naam" placeholder='gebruikersnaam'><br>
-<input type='password' name='wachtwoord' placeholder='wachtwoord'><br><br>
+<input type='password' name='wachtwoord' placeholder='wachtwoord' ><br><br>
 <input type='submit' value='Login'>
-
-
 </form>
 _END;
 ?>

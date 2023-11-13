@@ -1,14 +1,16 @@
 <?php
 include_once "../controller/functions.php";
 
+$legeinput = $onjuistPW = $noName = '';
+
 if(isset($_POST['naam'])){
     $naam = $_POST['naam'];
     $wachtwoord = $_POST['wachtwoord'];
-    $hashedWachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT);
 
-    if ($naam == "" || $wachtwoord == ""){
-        $error = "De velden zijn niet juist ingevuld";
-        echo $error;
+    if (empty($_POST['naam']) || empty($_POST['wachtwoord'])){
+        $legeinput = "De velden zijn niet juist ingevuld";
+        header("Location: ../view/login.php");
+        die();
     } else {
         $query = ("SELECT * FROM gebruiker WHERE naam ='$naam';");
         $result = queryMysql($query);
@@ -22,14 +24,16 @@ if(isset($_POST['naam'])){
                 session_start();
                 $_SESSION['id'] = $naam;
                 header("Location: ../view/home.php");
+                die();
             } else {
-                $error= "Onjuist wachtwoord.";
-                echo $error;
+                $onjuistPW = "Onjuist wachtwoord.";
+                header("Location: ../view/login.php");
+                die();
             }    
         } else {
-            $error = "Onjuiste gebruikersnaam, probeer het opnieuw";
-            echo $error;
-           
+            $noName = "Onjuiste gebruikersnaam, probeer het opnieuw";
+            header("Location: ../view/login.php");
+            die();
         }
     } 
 }
