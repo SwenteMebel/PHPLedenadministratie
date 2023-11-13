@@ -3,8 +3,9 @@
 <?php
 include_once "../controller/functions.php";
 
+?>
 
-
+<?php
 echo <<<_END
 
 <form method='post' action='../model/signup.model.php'>
