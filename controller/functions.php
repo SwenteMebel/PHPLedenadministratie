@@ -32,11 +32,6 @@ function sanitiseString($var)
   return str_replace("'", "", $result); // So now remove them
 }
 
-function createDB(){
-  $query = "CREATE DATABASE IF NOT EXISTS phpeind";
-  queryMysql($query);
-}
-
 function createTableUser(){
   $query = "CREATE TABLE IF NOT EXISTS gebruiker (
     id SMALLINT NOT NULL AUTO_INCREMENT,

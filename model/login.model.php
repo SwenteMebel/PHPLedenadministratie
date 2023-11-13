@@ -10,16 +10,25 @@ if(isset($_POST['naam'])){
         $error = "De velden zijn niet juist ingevuld";
         echo $error;
     } else {
-        $result = queryMysql("SELECT naam, wachtwoord FROM gebruiker WHERE naam='$naam' AND wachtwoord='$wachtwoord'");
+        $query = ("SELECT * FROM gebruiker WHERE naam ='$naam';");
+        $result = queryMysql($query);
+        $count = $result->rowCount();
 
-        if(!$result->rowCount() == 0 ){
-            $error = "Onjuist wachtwoord/gebruikersnaam, probeer het opnieuw";
-            echo $error;
+        if($count > 0 ){
+            $queryPW = queryMysql("SELECT wachtwoord FROM gebruiker WHERE naam = '$naam';");
+            $result = $queryPW->fetch(PDO::FETCH_ASSOC);
+            $hashed_pw = $result['wachtwoord'];
+            if (password_verify($wachtwoord, $hashed_pw)){
+                session_start();
+                $_SESSION['id'] = $naam;
+                header("Location: ../view/home.php");
+            } else {
+                $error= "Onjuist wachtwoord.";
+                echo $error;
+            }    
         } else {
-            session_start();
-            $_SESSION['id'] = $naam;
-            header("Location: ../view/home.php");
-            exit();
+            $error = "Onjuiste gebruikersnaam, probeer het opnieuw";
+            echo $error;
            
         }
     } 

@@ -2,7 +2,7 @@
 $host = 'localhost'; // URL of IP adres van de DB
 $user = 'root'; // Gebruikersnaam van de DB gebruiker (admin)
 $pass = '';   // Wachtwoord van de DB gebruiker
-$dbname = 'eindphp'; //DATABASE naam
+$dbname = 'phpeindopdracht'; //DATABASE naam
 $chrs = 'utf8mb4';
 $attr = "mysql: host=$host;dbname=$dbname;chrs=$chrs";
 $opts = [
@@ -13,7 +13,6 @@ $opts = [
 
 try{
     $pdo = new PDO($attr, $user, $pass, $opts);
-    createDB();
     createTableUser();
 }
 catch (PDOException $e){
