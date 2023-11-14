@@ -2,8 +2,8 @@
 include_once "../controller/functions.php";
 
 if(isset($_POST['naam'])){
-    $naam = $_POST['naam'];
-    $wachtwoord = $_POST['wachtwoord'];
+    $naam = sanitiseString($_POST['naam']);
+    $wachtwoord = sanitiseString($_POST['wachtwoord']);
     $hashedWachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT);
 
     if ($naam == "" || $wachtwoord == ""){
@@ -11,10 +11,11 @@ if(isset($_POST['naam'])){
         echo $error;
     } else {
         
-        $result = queryMysql("SELECT naam, wachtwoord FROM gebruiker WHERE naam='$naam';");
+        $result = queryMysql("SELECT * FROM gebruiker WHERE naam= ?;");
         $count = $result->rowCount();
 
         if($count > 0 ){
+            if(password_verify())
             session_start();
             $_SESSION['id'] = $naam;
             header("Location: ../view/home.php");
