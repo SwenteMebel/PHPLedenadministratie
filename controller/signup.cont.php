@@ -1,6 +1,7 @@
 <?php
 include_once "functions.php";
 
+// Controlleerd of alles is ingevuld dat ingevuld moet worden
 if(empty($_POST['wachtwoord']) || empty($_POST['naam']) || empty($_POST['email'])){
     session_start();
     $_SESSION['message'][] = "Niet alle velden zijn ingevuld!";
@@ -8,7 +9,7 @@ if(empty($_POST['wachtwoord']) || empty($_POST['naam']) || empty($_POST['email']
     exit();
 }
 
-
+// Controlleerd of de Email al bestaad
 function validateEmail($email){
     $queryEmail = queryMysql("SELECT email FROM gebruiker WHERE email = '$email' ;");
     $result = $queryEmail->fetch(PDO::FETCH_ASSOC);
@@ -16,7 +17,7 @@ function validateEmail($email){
     
     if($emailval === $email){
         session_start();
-        $_SESSION['message'][] = "Email is al in gebruik!";
+        $_SESSION['message'][] = "Gebruiks een andere Email, deze is al in gebruik";
         header('Location: ../view/signup.php');
         exit();
     } else {
@@ -24,6 +25,7 @@ function validateEmail($email){
     }
 }
 
+// Controlleerd of de wachtwoorden overeen komen.
 function validateWachtwoord($wachtwoord, $wachtwoord_repeat){
     if ($wachtwoord === $wachtwoord_repeat){
         return;

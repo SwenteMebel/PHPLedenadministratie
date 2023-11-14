@@ -1,10 +1,11 @@
 <?php
 include_once "../controller/functions.php";
-
+include_once "../controller/login.cont.php";
 
 if(isset($_POST['naam'])){
     $naam = sanitiseString($_POST['naam']);
     $wachtwoord = sanitiseString($_POST['wachtwoord']);
+    
     
 
     if (empty($_POST['naam']) || empty($_POST['wachtwoord'])){
@@ -28,13 +29,13 @@ if(isset($_POST['naam'])){
                 exit();
             } else {
                 session_start(); 
-                $_SESSION['message'] [] = "Onjuist wachtwoord.";
+                $_SESSION['message'] [] = "Wachtwoord onjuist,probeer het opnieuw.";
                 header("Location: ../view/login.php");
                 exit();
             }    
         } else {
             session_start(); 
-            $_SESSION['message'] []= "Onjuiste gebruikersnaam, probeer het opnieuw";
+            $_SESSION['message'] []= "Gebruiksersnaam onjuist, probeer het opnieuw";
             header("Location: ../view/login.php");
             exit();
         }
