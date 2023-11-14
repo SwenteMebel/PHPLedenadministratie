@@ -1,28 +1,37 @@
 <?php
 include_once "../controller/functions.php";
 
+
+
 if(isset($_POST['naam'])){
     $naam = sanitiseString($_POST['naam']);
     $wachtwoord = sanitiseString($_POST['wachtwoord']);
-    $hashedWachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT);
+    
 
-    if ($naam == "" || $wachtwoord == ""){
-        $error = "De velden zijn niet juist ingevuld";
-        echo $error;
+    if (empty($_POST['naam']) || empty($_POST['wachtwoord'])){
+        $_SESSION['errormsg'] = "De velden zijn niet juist ingevuld";
+        header("Location: ../view/login.php");
     } else {
-        
-        $result = queryMysql("SELECT * FROM gebruiker WHERE naam= ?;");
+        $query = ("SELECT * FROM gebruiker WHERE naam ='$naam';");
+        $result = queryMysql($query);
         $count = $result->rowCount();
 
         if($count > 0 ){
-            if(password_verify())
-            session_start();
-            $_SESSION['id'] = $naam;
-            header("Location: ../view/home.php");
-            exit();
+            $queryPW = queryMysql("SELECT wachtwoord FROM gebruiker WHERE naam = '$naam';");
+            $result = $queryPW->fetch(PDO::FETCH_ASSOC);
+            $hashed_pw = $result['wachtwoord'];
+            if (password_verify($wachtwoord, $hashed_pw)){
+                session_start();
+                $_SESSION['id'] = $naam;
+                header("Location: ../view/home.php");
+                die();
+            } else {
+                $_SESSION['errormsg'] = "Onjuist wachtwoord.";
+                header("Location: ../view/login.php");
+            }    
         } else {
-            $error = "Onjuist wachtwoord/gebruikersnaam, probeer het opnieuw";
-            echo $error;
+            $_SESSION['errormsg'] = "Onjuiste gebruikersnaam, probeer het opnieuw";
+            header("Location: ../view/login.php");
         }
     } 
 }

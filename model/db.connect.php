@@ -13,7 +13,6 @@ $opts = [
 
 try{
     $pdo = new PDO($attr, $user, $pass, $opts);
-    createDB();
     createTableUser();
 }
 catch (PDOException $e){
