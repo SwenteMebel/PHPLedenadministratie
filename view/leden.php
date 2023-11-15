@@ -9,7 +9,7 @@
             $id = $data['id'];
             $gebruikersnaam = $data['naam'];
             $email = $data['email'];
-
+            $functie = $data['functie'];
 
             echo <<<_END
             <br>
@@ -18,6 +18,7 @@
                     ID = $id <br>
                     Gebruikersnaam: $gebruikersnaam. <br>
                     Email: $email. <br>
+                    Functie: $functie <br>
                 </div>
                 <div class="knop">
                     <form method='post' action='../model/leden.model.php'>
@@ -25,8 +26,8 @@
                     <input type='hidden' name='id' value='$id'>
                     <input type='submit' value='verwijderen'>
                     </form>
-                    <form  action='wijzigen.php'>
-                    <input type='hidden' name='delete'>
+                    <form  action='profiel.php'>
+                    <input type='hidden' name='wijzigen'>
                     <input type='hidden' name='id' value='$id'>
                     <input type='submit' value='wijzigen'>
                     </form>
