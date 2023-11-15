@@ -16,7 +16,7 @@
             <div class="gebruiker">
                 <div class="gegevens">
                     ID = $id <br>
-                    Gebruikersnaam: $gebruikersnaam. <br>
+                    Gebruikersnaam: <a href='profiel.php'>$gebruikersnaam.</a> <br>
                     Email: $email. <br>
                     Functie: $functie <br>
                 </div>
@@ -26,8 +26,8 @@
                     <input type='hidden' name='id' value='$id'>
                     <input type='submit' value='verwijderen'>
                     </form>
-                    <form  action='profiel.php'>
-                    <input type='hidden' name='wijzigen'>
+                    <form method='post' action='../model/wijzig.model.php'>
+                    <input type='hidden' name='wijzig'>
                     <input type='hidden' name='id' value='$id'>
                     <input type='submit' value='wijzigen'>
                     </form>
