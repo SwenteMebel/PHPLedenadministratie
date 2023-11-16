@@ -24,7 +24,7 @@ session_start()
                     if(!isset( $_SESSION['id'])){
                         echo "<li><a href='login.php'>Login</a></li>";
                     } else {
-                        echo "Ingelogd als $_SESSION[id]";
+                        echo "<p>Ingelogd als $_SESSION[id]<p>";
                         echo "<li><a href='home.php'>Home</a></li>"; 
                         echo "<li><a href='leden.php'>Leden</a></li>"; 
                         echo "<li><a href='signup.php'>Registreer</a></li>";

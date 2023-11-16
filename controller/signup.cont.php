@@ -36,12 +36,7 @@ function validateWachtwoord($wachtwoord, $wachtwoord_repeat){
         exit();
     }
 
-    function gebruikerAangemaakt(){
-        session_start();
-        $_SESSION['message'][] = "Gebruiker is aangemaakt.";
-        header('Location: ../view/leden.php');
-        exit();
-    }
+   
 }
 
 ?>

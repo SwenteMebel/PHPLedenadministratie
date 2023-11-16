@@ -17,7 +17,7 @@
             <br>
             <div class="gebruiker">
                 <div class="gegevens">
-                    ID = $id <br>
+                    
                     Gebruikersnaam: <a href='profiel.php'>$gebruikersnaam.</a> <br>
                     Email: $email. <br>
                     Functie: $functie <br>
