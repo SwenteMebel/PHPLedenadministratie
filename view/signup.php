@@ -3,8 +3,10 @@
 
 
 <?php include_once "../controller/errormsg.php";?>
-<form method='post' action='../model/signup.model.php'>
-    <label for='naam'>Voornaam:</label><br>
+
+<form class='form'method='post' action='../model/signup.model.php'>
+<?php include_once "../controller/errormsg.php";?>
+<label for='naam'>Voornaam:</label><br>
 <input type="text" name="naam" placeholder='Gebruikersnaam' ><br>
 <label for='email'>Email:</label><br>
 <input type='email' name='email' placeholder='Email' ><br>

@@ -29,7 +29,7 @@ if(isset($_POST['naam'])){
                 exit();
             } else {
                 session_start(); 
-                $_SESSION['message'] [] = "Wachtwoord onjuist,probeer het opnieuw.";
+                $_SESSION['message'] [] = "Wachtwoord onjuist, probeer het opnieuw.";
                 header("Location: ../view/login.php");
                 exit();
             }    

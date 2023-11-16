@@ -3,8 +3,10 @@
 
 <div class="overzicht">
     <h1>Leden Overzicht</h1>
-   <?php
 
+    <?php include_once "../controller/errormsg.php";?>
+
+    <?php
         while($data = $result->fetch()) {
             $id = $data['id'];
             $gebruikersnaam = $data['naam'];
@@ -36,7 +38,7 @@
             </div>
             _END;
         } 
-   ?>
+    ?>
 
 
 </div>

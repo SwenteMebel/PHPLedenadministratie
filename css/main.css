@@ -5,6 +5,7 @@ html,body{
     background-color: antiquewhite;
 }
 
+/*Navbar*/
 .navbar{
     background-color: aqua;
     height: 2rem;
@@ -35,4 +36,94 @@ li > a {
 }
 ul {
     list-style-type: none;
+}
+
+/*body*/
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.container{
+    
+    justify-content: center;
+    align-items: center;
+}
+
+/*Error berichten*/
+.error{
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/*Login Form en Signup form*/
+.form{
+    display:grid;
+    background-color: rgb(119, 143, 143);
+    padding: 30px;
+    margin: 20px;
+    border-radius: 8px;
+    width: 100%;
+    box-shadow: 8px 10px 8px black;
+}
+.form:hover{
+    box-shadow: 4px 5px black;
+}
+label{ 
+    font-size: 18px;
+    font-weight:700;
+}
+input{
+    background-color: antiquewhite;
+    border: 0;
+    border-radius: 8px;
+    padding: 8px;
+   
+}
+select{
+    background-color: antiquewhite;
+    border: 0;
+    border-radius: 8px;
+    padding: 8px;
+}
+input[type=submit]{
+    box-shadow: 5px 6px black;
+    font-weight: 600;
+}
+input[type=submit]:hover{
+    box-shadow: 2px 3px black;
+}
+
+/*Leden overview*/
+.overzicht >h1{
+    display: grid;
+    justify-content: center;
+}
+.gebruiker{
+    background-color: rgb(119, 143, 143);
+    display: grid;
+    grid-template-columns: 68% 25%;
+    height: 100px;
+    width: 150%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 8px 10px 8px black;
+}
+.gegevens{
+    font-size: 16px;
+    font-weight: 600;
+}
+.knop{
+    display: grid;
+    row-gap: 10px;
+    justify-content: end;
 }

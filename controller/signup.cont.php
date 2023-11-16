@@ -17,7 +17,7 @@ function validateEmail($email){
     
     if($emailval === $email){
         session_start();
-        $_SESSION['message'][] = "Gebruiks een andere Email, deze is al in gebruik";
+        $_SESSION['message'][] = "Gebruik een andere Email, deze is al in gebruik";
         header('Location: ../view/signup.php');
         exit();
     } else {
@@ -33,6 +33,13 @@ function validateWachtwoord($wachtwoord, $wachtwoord_repeat){
         session_start();
         $_SESSION['message'][] = "Wachtwoorden komen niet overeen, probeer het opnieuw.";
         header('Location: ../view/signup.php');
+        exit();
+    }
+
+    function gebruikerAangemaakt(){
+        session_start();
+        $_SESSION['message'][] = "Gebruiker is aangemaakt.";
+        header('Location: ../view/leden.php');
         exit();
     }
 }

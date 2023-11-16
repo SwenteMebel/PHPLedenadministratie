@@ -23,5 +23,7 @@ if(isset($_POST['naam']) && isset($_POST['email']) && isset($_POST['wachtwoord']
     $stmt->bindParam(4, $selectOption, PDO::PARAM_STR, 30);
         
     $stmt->execute([$naam, $email, $hashpw, $selectOption]);
+    gebruikerAangemaakt();
     header('Location: ../view/leden.php');
+    
 }
