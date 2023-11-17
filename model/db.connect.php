@@ -13,7 +13,12 @@ $opts = [
 
 try{
     $pdo = new PDO($attr, $user, $pass, $opts);
-    createTableUser();
+    createTableLoginUser();
+    createTableLid();
+    createTableFamilie();
+    createTableSoortLid();
+    createTableBoekjaar();
+    createTablecontribute();
 }
 catch (PDOException $e){
     throw new PDOException($e->getMessage(), (int)$e->getCode());

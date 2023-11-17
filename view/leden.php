@@ -8,19 +8,20 @@
 
     <?php
         while($data = $result->fetch()) {
-            $id = $data['id'];
+            $id = $data['id_lid'];
             $gebruikersnaam = $data['naam'];
-            $email = $data['email'];
-            $functie = $data['functie'];
+            $geboorteDatum = $data['gb_datum'];
+            $soortLid = $data['soort_lid'];
 
             echo <<<_END
             <br>
             <div class="gebruiker">
                 <div class="gegevens">
-                    
-                    Gebruikersnaam: <a href='profiel.php'>$gebruikersnaam.</a> <br>
-                    Email: $email. <br>
-                    Functie: $functie <br>
+                    ID = $id <br>
+                    Gebruikersnaam: <a href='profiel.php'>$gebruikersnaam.</a><br>
+                    Geboorte Datum: $geboorteDatum <br>
+                    Soort lid: $soortLid <br>
+
                 </div>
                 <div class="knop">
                     <form method='post' action='../model/leden.model.php'>

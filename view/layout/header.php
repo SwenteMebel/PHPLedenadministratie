@@ -25,9 +25,17 @@ session_start()
                         echo "<li><a href='login.php'>Login</a></li>";
                     } else {
                         echo "<p>Ingelogd als $_SESSION[id]<p>";
-                        echo "<li><a href='home.php'>Home</a></li>"; 
-                        echo "<li><a href='leden.php'>Leden</a></li>"; 
-                        echo "<li><a href='signup.php'>Registreer</a></li>";
+                        echo "<li><a href='leden.php'>Leden</a></li>";
+                        echo <<<_END
+                            <div class="dropdown">
+                                <button class="dropbtn">Registreer</button>
+                                <div class="dropdown-content">
+                                    <a href="signupFam.php">Familie</a>
+                                    <a href="signupLid.php">Lid</a>
+                                    <a href="signupUser.php">User</a>
+                                </div>
+                            </div> 
+                        _END;
                         echo "<li><a href='../model/logout.model.php'>Logout</a></li>";
                     }
                 ?>

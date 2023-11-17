@@ -5,6 +5,7 @@
 
 
 <form class='form' method='post' action='../model/login.model.php'>
+<h1>Login</h1>
 <?php include "../controller/errormsg.php";?>
 <br>
 <label>Gebruikersnaam:</label>

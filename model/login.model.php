@@ -14,18 +14,18 @@ if(isset($_POST['naam'])){
         header("Location: ../view/login.php");
         exit();
     } else {
-        $query = ("SELECT * FROM gebruiker WHERE naam ='$naam';");
+        $query = ("SELECT * FROM user WHERE naam ='$naam';");
         $result = queryMysql($query);
         $count = $result->rowCount();
 
         if($count > 0 ){
-            $queryPW = queryMysql("SELECT wachtwoord FROM gebruiker WHERE naam = '$naam';");
+            $queryPW = queryMysql("SELECT wachtwoord FROM user WHERE naam = '$naam';");
             $result = $queryPW->fetch(PDO::FETCH_ASSOC);
             $hashed_pw = $result['wachtwoord'];
             if (password_verify($wachtwoord, $hashed_pw)){
                 session_start();
                 $_SESSION['id'] = $naam;
-                header("Location: ../view/home.php");
+                header("Location: ../view/leden.php");
                 exit();
             } else {
                 session_start(); 

@@ -32,14 +32,63 @@ function sanitiseString($var)
   return str_replace("'", "", $result); // So now remove them
 }
 
-function createTableUser(){
-  $query = "CREATE TABLE IF NOT EXISTS gebruiker (
-    id SMALLINT NOT NULL AUTO_INCREMENT,
+function createTableLoginUser(){
+  $query = "CREATE TABLE IF NOT EXISTS user (
+    id_user SMALLINT NOT NULL AUTO_INCREMENT,
+    naam VARCHAR(255) NOT NULL,
+    wachtwoord VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id_user)
+)"; 
+  queryMysql($query);
+}
+
+function createTableLid(){
+  $query = "CREATE TABLE IF NOT EXISTS lid (
+    id_lid SMALLINT NOT NULL AUTO_INCREMENT,
     naam VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
-    wachtwoord VARCHAR(255) NOT NULL,
-    functie VARCHAR(30) NOT NULL,
-    PRIMARY KEY (id)
+    gb_datum DATE NOT NULL,
+    soort_lid VARCHAR(50) NOT NULL,
+    PRIMARY KEY (id_lid)
+)"; 
+  queryMysql($query);
+}
+
+function createTableFamilie(){
+  $query = "CREATE TABLE IF NOT EXISTS familie (
+    id_familie SMALLINT NOT NULL AUTO_INCREMENT,
+    naam VARCHAR(255) NOT NULL UNIQUE,
+    adres VARCHAR(255) NOT NULL UNIQUE,
+    postcode VARCHAR(10) NOT NULL,
+    PRIMARY KEY (id_familie)
+)"; 
+  queryMysql($query);
+}
+
+function createTableSoortLid(){
+  $query = "CREATE TABLE IF NOT EXISTS soort (
+    id_soort SMALLINT NOT NULL AUTO_INCREMENT,
+    soort VARCHAR(50) NOT NULL ,
+    PRIMARY KEY (id_soort)
+)"; 
+  queryMysql($query);
+}
+function createTableBoekjaar(){
+  $query = "CREATE TABLE IF NOT EXISTS boekjaar (
+    id_jaar SMALLINT NOT NULL AUTO_INCREMENT,
+    jaar INT(4) NOT NULL,
+    PRIMARY KEY (id_jaar)
+)"; 
+  queryMysql($query);
+}
+
+function createTablecontribute(){
+  $query = "CREATE TABLE IF NOT EXISTS contributie (
+    id_contributie SMALLINT NOT NULL AUTO_INCREMENT,
+    leeftijd SMALLINT(100) NOT NULL,
+    soortlid VARCHAR(50) NOT NULL,
+    bedrag DECIMAL(20,2) NOT NULL,
+    PRIMARY KEY (id_contributie)
 )"; 
   queryMysql($query);
 }
