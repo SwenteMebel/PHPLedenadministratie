@@ -6,10 +6,10 @@
 <?php
 
     $data = $result->fetch();
-    $id = $data['id'];
+    $id = $data['id_lid'];
     $gebruikersnaam = $data['naam'];
     $email = $data['email'];
-    $functie = $data['functie'];
+   
 
     echo <<<_END
     <br>
@@ -19,7 +19,7 @@
             ID = $id <br>
             Gebruikersnaam: $gebruikersnaam. <br>
             Email: $email. <br>
-            Functie: $functie <br>
+           
         </div>
         <div class="knop">
             <form method='post' action='../model/leden.model.php'>

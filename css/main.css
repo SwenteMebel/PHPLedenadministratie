@@ -2,7 +2,7 @@ html,body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    min-height:100%;
+    height: 100%;
 }
 
 /*Navbar*/
@@ -17,8 +17,8 @@ html,body{
     display: flex;
     align-items: center;
     justify-content: start;
-    
 }
+
 .navlinks{
     display: flex;
     align-items: center;
@@ -82,25 +82,35 @@ ul {
   }
   
   /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {background-color: #ddd;}
+  .dropdown-content a:hover {
+    background-color: #ddd;
+    }
   
   /* Show the dropdown menu on hover */
-  .dropdown:hover .dropdown-content {display: block;}
+  .dropdown:hover .dropdown-content {
+    display: block;
+    }
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
-  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+  .dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+    }
 
 /*body*/
 main{
     display: flex;
     justify-content: center;
     align-items: center;
-    height:100%;
+    height: 70%;
 }
 .container{
-    height:100%;
+    display: grid;
+    grid-template-columns: auto auto;
+    flex-wrap: wrap; 
     justify-content: center;
-    align-items: center;
+    align-items: start;
+    height: 100%;
+    width: 100%;
 }
 
 /*Error berichten*/
@@ -119,7 +129,7 @@ main{
 /*Login Form en Signup form*/
 .form{
     display:grid;
-    background-color: rgb(119, 143, 143);
+    background-color: rgb(52, 71, 71);
     padding: 30px;
     margin: 20px;
     border-radius: 8px;
@@ -164,7 +174,7 @@ input[type=submit]:hover{
     display: grid;
     grid-template-columns: 68% 25%;
     height: 100px;
-    width: 150%;
+    width: 100%;
     justify-content: center;
     align-items: center;
     border-radius: 8px;
@@ -179,14 +189,32 @@ input[type=submit]:hover{
     row-gap: 10px;
     justify-content: end;
 }
-.onderin{
-    width: 100%;
-    height: 100%; 
+
+.overzichtalles {
+    
     display: flex;
-    justify-content: end;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
+.overzicht{
+    background-color: rgb(52, 71, 71);
+    min-width:300px;
+    width: 100%;
+    gap: 20px;
+    padding: 20px;
+    margin: 20px 0 20px 0;
+    border-radius: 8px;
+    box-shadow: 8px 10px 8px rgb(117, 99, 99);
+}
+.overzicht > h1 {
+    color: #596559;
+    font-size: 40px;
+}
+
+
 footer{
-    height: 100%;
-   
+    height: auto;
 }

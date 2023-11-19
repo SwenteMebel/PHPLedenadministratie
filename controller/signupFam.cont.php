@@ -18,7 +18,7 @@ function familiecheck($naam){
 
 
 function adrescheck($adres){
-    $query = "SELECT adres FROM familie WHERE naam = '$adres';";
+    $query = "SELECT adres FROM familie WHERE adres = '$adres';";
     $result = queryMysql($query);
     $count = $result->rowCount();
 
