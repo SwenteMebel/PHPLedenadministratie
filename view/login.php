@@ -9,9 +9,9 @@
 <?php include "../controller/errormsg.php";?>
 <br>
 <label>Gebruikersnaam:</label>
-<input type="text" name="naam" placeholder='gebruikersnaam'><br>
+<input type="text" name="naam" placeholder='Gebruikersnaam'><br>
 <label>Wachtwoord:</label>
-<input type='password' name='wachtwoord' placeholder='wachtwoord' ><br><br>
+<input type='password' name='wachtwoord' placeholder='Wachtwoord' ><br><br>
 
 <input type='submit' value='Login'>
 </form>

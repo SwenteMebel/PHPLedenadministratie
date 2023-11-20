@@ -16,7 +16,6 @@ function familiecheck($naam){
 
 }
 
-
 function adrescheck($adres){
     $query = "SELECT adres FROM familie WHERE adres = '$adres';";
     $result = queryMysql($query);
@@ -30,5 +29,14 @@ function adrescheck($adres){
      } else {
         return; 
      }
+}
+
+if(empty($_POST['naam']) || empty($_POST['adres']) || empty($_POST['postcode'])){
+   session_start();
+   $_SESSION['message'] [] = "Een van de velden zijn niet juist ingevuld";
+   header('Location: ../view/signupFam.php');
+   exit();
+} else {
+   return;
 }
 ?>

@@ -19,21 +19,16 @@
                 <br>
                 <div class="gebruiker">
                     <div class="gegevens">
-                        Gebruikersnaam: <a href='profiel.php'>$gebruikersnaam</a><br>
+                        Gebruikersnaam: <a href='profielLid.php?id=$id'>$gebruikersnaam</a><br>
                         Geboorte Datum: $geboorteDatum <br>
                         Soort lid: $soortLid <br>
 
                     </div>
                     <div class="knop">
-                        <form method='post' action='../model/leden.model.php'>
-                        <input type='hidden' name='delete'>
-                        <input type='hidden' name='idlid' value='$id'>
-                        <input type='submit' value='Verwijder Lid'>
-                        </form>
-                        <form method='post' action='../model/wijzig.model.php'>
+                        <form method='post' action='profielLid.php?id=$id'>
                         <input type='hidden' name='wijzig'>
                         <input type='hidden' name='idlid' value='$id'>
-                        <input type='submit' value='Wijzig Lid'>
+                        <input type='submit' value='Wijzig $gebruikersnaam'>
                         </form>
                     </div>
 
@@ -57,21 +52,16 @@
                 <br>
                 <div class="gebruiker">
                     <div class="gegevens">
-                        Familie: <a href='profiel.php/user=.$famID'>$famNaam.</a><br>
+                        Familie: <a href='profielFam.php?id=$famID'>$famNaam.</a><br>
                         Adres: $famAdres <br>
                         Postcode: $famPostcode <br>
 
                     </div>
                     <div class="knop">
-                        <form method='post' action='../model/familie.model.php'>
-                        <input type='hidden' name='delete'>
-                        <input type='hidden' name='idfam' value='$famID'>
-                        <input type='submit' value='Verwijder Familie'>
-                        </form>
-                        <form method='post' action='../model/wijzig.model.php'>
+                        <form method='post' action='profielFam.php?id=$famID'>
                         <input type='hidden' name='wijzig'>
                         <input type='hidden' name='idfam' value='$famID'>
-                        <input type='submit' value='Wijzigen Familie'>
+                        <input type='submit' value='Wijzig $famNaam'>
                         </form>
                     </div>
 
