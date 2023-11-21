@@ -1,5 +1,5 @@
 <?php
-include_once "functions.php";
+
 
 // Controlleerd of alles is ingevuld dat ingevuld moet worden
 if(empty($_POST['wachtwoord']) || empty($_POST['naam'])){

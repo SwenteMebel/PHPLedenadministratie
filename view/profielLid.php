@@ -41,13 +41,13 @@ echo <<<_END
 <h1>Wijziging van $gebruikersnaam</h1>
     <div class="profielgegevens">
         <form method='post' action='..model/wijzigLid.model.php'>
-            <label for='naam'>Familie naam: $gebruikersnaam</label><br>
-            <input type='text' name='naam' placeholder="Wijzig gebruikersnaam"><br>
-            <label>Adres wijzigen: $email</label><br>
-            <input type='email' name='email' placeholder="Wijzig email"><br>
-            <label>Postcode Wijzigen: $geboorteDatum</label><br>
-            <input type='date' name='gb_datum' placeholder="Wijzig de geboortedatum"><br>
-            <label>Adres wijzigen: $soort_lid</label><br>
+            <label for='naam'>Naam wijzigen: $gebruikersnaam</label><br>
+            <input type='text' name='naam' placeholder="Wijzig gebruikersnaam"><br><br>
+            <label>Email wijzigen: $email</label><br>
+            <input type='email' name='email' placeholder="Wijzig email"><br><br>
+            <label>Geboorte datum Wijzigen: $geboorteDatum</label><br>
+            <input type='date' name='gb_datum' placeholder="Wijzig de geboortedatum"><br><br>
+            <label>wijzig soort: $soort_lid</label><br>
             <input type='text' name='soort_lid' placeholder="Wijzig soort lid"><br>
             <br>
             <input type='submit' value='Wijzigen'>

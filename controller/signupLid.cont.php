@@ -1,5 +1,5 @@
 <?php
-include_once "functions.php";
+
 
 // Controlleerd of de Email al bestaad
 function validateEmail($email){
