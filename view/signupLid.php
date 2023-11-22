@@ -12,13 +12,13 @@
 <label for='naam'>Voornaam:</label><br>
 <input type="text" name="naam" placeholder='Gebruikersnaam' ><br>
 
-<label for='wachtwoord'>Email:</label><br>
+<label for='email'>Email:</label><br>
 <input type='email' name='email' placeholder="E-mail"><br>
 
-<label for='wachtwoord'>Geboorte Datum:</label><br>
+<label for='geboortedatum'>Geboorte Datum:</label><br>
 <input type='date' name='gb_datum'><br>
 
-<label for='herhaal_wachtwoord'>Soort Lid:</label><br>
+<label for='soort_lid'>Soort Lid:</label><br>
 <select name="selectOption">
     <option value="Jeugd">Jeugd</option>
     <option value="Aspirant">Aspirant</option>

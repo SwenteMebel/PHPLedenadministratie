@@ -38,17 +38,26 @@ echo <<<_END
 
 
 <div class="wijziging">
+_END;
+include_once "../controller/errormsg.php";
+echo <<<_END
 <h1>Wijziging van $gebruikersnaam</h1>
     <div class="profielgegevens">
-        <form method='post' action='..model/wijzigLid.model.php'>
+        <form method='post' action='../model/wijzigLid.model.php?id=$id'>
             <label for='naam'>Naam wijzigen: $gebruikersnaam</label><br>
             <input type='text' name='naam' placeholder="Wijzig gebruikersnaam"><br><br>
             <label>Email wijzigen: $email</label><br>
             <input type='email' name='email' placeholder="Wijzig email"><br><br>
             <label>Geboorte datum Wijzigen: $geboorteDatum</label><br>
             <input type='date' name='gb_datum' placeholder="Wijzig de geboortedatum"><br><br>
-            <label>wijzig soort: $soort_lid</label><br>
-            <input type='text' name='soort_lid' placeholder="Wijzig soort lid"><br>
+            <label>Wijzig soort: $soort_lid</label><br>
+            <select name="selectOption">
+                <option value="Jeugd">Jeugd</option>
+                <option value="Aspirant">Aspirant</option>
+                <option value="Junior">Junior</option>
+                <option value="Senior">Senior</option>
+                <option value="Oudere">Oudere</option>
+            </select><br>
             <br>
             <input type='submit' value='Wijzigen'>
         </form>
