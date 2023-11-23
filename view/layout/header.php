@@ -37,6 +37,15 @@ session_start();
                                 </div>
                             </div> 
                         _END;
+                        echo <<<_END
+                            <div class="dropdown">
+                                <button class="dropbtn">Finacieel</button>
+                                <div class="dropdown-content">
+                                    <a href="boekjaar.php">Boekjaar</a>
+                                    <a href="contributie.php">Contributie</a>
+                                </div>
+                            </div> 
+                        _END;
                         echo "<li><a href='../model/logout.model.php'>Logout</a></li>";
                     }
                 ?>

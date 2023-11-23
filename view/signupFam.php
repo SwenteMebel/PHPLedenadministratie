@@ -3,9 +3,7 @@
 <?php
     if(!isset($_SESSION['id'])){
         header('Location: login.php');
-    } else {
-    return; 
-    }
+    } 
 ?>
 
 
@@ -20,7 +18,9 @@
 <input type='text' name='adres' placeholder='Adres'><br>
 <label for='Postcode'>Postcode:</label><br>
 <input type='text' name='postcode' placeholder='Postcode'><br>
+<br>
 <input type='submit' value='Bevestigen'>
+<br>
 </form>
 
 <?php include_once "layout/footer.php";?>

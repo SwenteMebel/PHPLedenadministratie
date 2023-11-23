@@ -4,9 +4,7 @@
 <?php
     if(!isset($_SESSION['id'])){
         header('Location: login.php');
-    } else {
-    return; 
-    }
+    } 
 ?>
 <div class="overzichtalles">
     <div class="overzicht">
@@ -19,15 +17,15 @@
                 $id = $data['id_lid'];
                 $gebruikersnaam = $data['naam'];
                 $geboorteDatum = $data['gb_datum'];
-                $soortLid = $data['soort_lid'];
+                $leeftijd = $data['leeftijd'];
 
                 echo <<<_END
                 <br>
                 <div class="gebruiker">
                     <div class="gegevens">
-                        Gebruikersnaam: <a href='profielLid.php?id=$id'>$gebruikersnaam</a><br>
+                        Gebruikersnaam: <a href='profielLid.php?id=$id'>$gebruikersnaam </a><br>
                         Geboorte Datum: $geboorteDatum <br>
-                        Soort lid: $soortLid <br>
+                        Leeftijd: $leeftijd <br>
 
                     </div>
                     <div class="knop">
@@ -37,7 +35,7 @@
                         <input type='submit' value='Wijzig $gebruikersnaam'>
                         </form>
                     </div>
-
+                
                 </div>
                 _END;
             } 

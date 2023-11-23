@@ -3,9 +3,7 @@
 <?php
     if(!isset($_SESSION['id'])){
         header('Location: login.php');
-    } else {
-    return; 
-    }
+    } 
 ?>
 
 <?php

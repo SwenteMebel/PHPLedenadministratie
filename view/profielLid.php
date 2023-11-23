@@ -3,9 +3,7 @@
 <?php
     if(!isset($_SESSION['id'])){
         header('Location: login.php');
-    } else {
-    return; 
-    }
+    } 
 ?>
 
 <?php
@@ -16,7 +14,10 @@ $resultLid = $opzetlid->fetch();
 $gebruikersnaam = $resultLid['naam'];
 $email = $resultLid['email'];
 $geboorteDatum = $resultLid['gb_datum'];
-$soort_lid = $resultLid['soort_lid'];
+$leeftijd = $resultLid['leeftijd'];
+$soort_lid = $resultLid['soort_lid']; 
+
+
 
 echo <<<_END
 <div class="profiel">
@@ -27,7 +28,8 @@ echo <<<_END
             Gebruikersnaam: $gebruikersnaam <br>
             Email: $email <br>
             Geboorte datum: $geboorteDatum <br>
-            Soort lid: $soort_lid <br>
+            Leeftijd: $leeftijd <br>
+            Soort lid : $soort_lid <br>
         </div>
         <div class="knop">
             <form method='post' action='../model/leden.model.php'>
@@ -56,14 +58,8 @@ echo <<<_END
             <input type='email' name='email' placeholder="Wijzig email"><br><br>
             <label>Geboorte datum Wijzigen: $geboorteDatum</label><br>
             <input type='date' name='gb_datum' placeholder="Wijzig de geboortedatum"><br><br>
-            <label>Wijzig soort: $soort_lid</label><br>
-            <select name="selectOption">
-                <option value="Jeugd">Jeugd</option>
-                <option value="Aspirant">Aspirant</option>
-                <option value="Junior">Junior</option>
-                <option value="Senior">Senior</option>
-                <option value="Oudere">Oudere</option>
-            </select><br>
+            <label>Leeftijd: $leeftijd</label><br><br>
+            <label>Soort lid: $soort_lid</label><br>
             <br>
             <input type='submit' value='Wijzigen'>
         </form>

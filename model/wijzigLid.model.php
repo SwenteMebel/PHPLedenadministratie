@@ -9,7 +9,7 @@ $resultLid = $opzetLid->fetch();
 $lid = $resultLid['naam'];
 $email = $resultLid['email'];
 $gb_datum = $resultLid['gb_datum'];
-$soort_lid = $resultLid['soort_lid'];
+$leeftijd = $resultLid['leeftijd'];
 
 include_once "../controller/wijzigLid.cont.php";
 $queryLid = NULL;

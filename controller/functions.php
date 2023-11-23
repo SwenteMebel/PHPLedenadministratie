@@ -48,6 +48,7 @@ function createTableLid(){
     naam VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     gb_datum DATE NOT NULL,
+    leeftijd INT(50) NOT NULL,
     soort_lid VARCHAR(50) NOT NULL,
     PRIMARY KEY (id_lid)
 )"; 
@@ -92,3 +93,5 @@ function createTablecontribute(){
 )"; 
   queryMysql($query);
 }
+
+

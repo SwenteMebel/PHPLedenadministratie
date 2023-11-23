@@ -3,9 +3,8 @@
 <?php
     if(!isset($_SESSION['id'])){
         header('Location: login.php');
-    } else {
-    return; 
-    }
+    } 
+
 ?>
 
 
@@ -23,15 +22,6 @@
 
 <label for='geboortedatum'>Geboorte Datum:</label><br>
 <input type='date' name='gb_datum'><br>
-
-<label for='soort_lid'>Soort Lid:</label><br>
-<select name="selectOption">
-    <option value="Jeugd">Jeugd</option>
-    <option value="Aspirant">Aspirant</option>
-    <option value="Junior">Junior</option>
-    <option value="Senior">Senior</option>
-    <option value="Oudere">Oudere</option>
-</select>
 
 <br><br>
 <input type='submit' value='Bevestigen'>
