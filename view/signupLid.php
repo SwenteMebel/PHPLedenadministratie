@@ -1,6 +1,12 @@
 <?php include_once "layout/header.php";?>
 <?php include_once "../controller/functions.php";?>
-
+<?php
+    if(!isset($_SESSION['id'])){
+        header('Location: login.php');
+    } else {
+    return; 
+    }
+?>
 
 
 
