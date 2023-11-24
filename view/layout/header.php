@@ -23,7 +23,7 @@ session_start();
             
                 <?php
                     if(!isset( $_SESSION['id'])){
-                        echo "<li><a href='login.php'>Login</a></li>";
+                        echo "<li><a href='../login.php'>Login</a></li>";
                     } else {
                         echo "<p>Ingelogd als $_SESSION[id]<p>";
                         echo "<li><a href='leden.php'>Leden</a></li>";
@@ -33,7 +33,7 @@ session_start();
                                 <div class="dropdown-content">
                                     <a href="signupFam.php">Familie</a>
                                     <a href="signupLid.php">Lid</a>
-                                    <a href="signupUser.php">User</a>
+                                    <a href="signupUser.php">Login User</a>
                                 </div>
                             </div> 
                         _END;

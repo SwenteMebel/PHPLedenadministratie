@@ -37,35 +37,20 @@ if(isset($_POST['naam']) || isset($_POST['email']) || isset($_POST['gb_datum']))
         //wijzigt geboorte datum
         $updateGbDatum = sanitiseString($_POST['gb_datum']);
         $queryDatum = "UPDATE lid SET gb_datum = '$updateGbDatum' WHERE gb_datum = '$gb_datum'";
-       
+        
         //berekend de leeftijd na de datum wijziging. 
         $huidigDate = Date("Y-m-d");
         $leeftijdberekening = date_diff(date_create($updateGbDatum), date_create($huidigDate));
-        $resultLeeftijd = $leeftijdberekening->format('%y');
-        $updateLeeftijd = "UPDATE lid SET leeftijd = '$resultLeeftijd' WHERE id_lid = '$id';";
+        $leeftijd = $leeftijdberekening->format('%y');
+        $updateLeeftijd = "UPDATE lid SET leeftijd = '$leeftijd' WHERE id_lid = '$id';";
 
-
-        $role = ['Jeugd', 'Aspirant', 'Junior', 'Senior','Oudere'];
-    
-        if($updateLeeftijd < 8){
-            return $role[0];
-            die();
-        } elseif ($updateLeeftijd >= 8 && $leeftijd <= 12) {
-            return $role[1];
-            die();
-        } elseif ($updateLeeftijd >= 13 && $leeftijd <= 17 ){
-            return $role[2];
-            die();
-        } elseif ($updateLeeftijd >= 18 && $leeftijd <= 50) {
-            return $role[3];
-            die();
-        } else {
-            return $role[4];
-            die();
-        }
         
-        $leeftijd = queryMysql($updateLeeftijd);
+        $resultLeeftijd = queryMysql($updateLeeftijd);
         $resultDatum = queryMysql($queryDatum);
+       
+        $role = roleSet($leeftijd);
+        $updateRole = "UPDATE lid SET soort_lid = '$role' WHERE id_lid = '$id';";
+        $resultRole = queryMysql($updateRole);
 
         session_start();
         $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";
@@ -75,6 +60,28 @@ if(isset($_POST['naam']) || isset($_POST['email']) || isset($_POST['gb_datum']))
     }
 
 }
+
+
+function roleSet($leeftijd){
+    $role = ['Jeugd', 'Aspirant', 'Junior', 'Senior','Oudere'];
+    
+    if($leeftijd < 8){
+        return $role[0];
+        die();
+    } elseif ($leeftijd >= 8 && $leeftijd <= 12) {
+       return $role[1];
+       die();
+    } elseif ($leeftijd >= 13 && $leeftijd <= 17 ){
+        return $role[2];
+        die();
+    } elseif ($leeftijd >= 18 && $leeftijd <= 50) {
+        return $role[3];
+        die();
+    } else {
+      return $role[4];
+      die();
+    }
+  }
 
 
 

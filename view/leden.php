@@ -18,6 +18,7 @@
                 $gebruikersnaam = $data['naam'];
                 $geboorteDatum = $data['gb_datum'];
                 $leeftijd = $data['leeftijd'];
+                $soort_lid = $data['soort_lid'];
 
                 echo <<<_END
                 <br>
@@ -26,6 +27,7 @@
                         Gebruikersnaam: <a href='profielLid.php?id=$id'>$gebruikersnaam </a><br>
                         Geboorte Datum: $geboorteDatum <br>
                         Leeftijd: $leeftijd <br>
+                        Soort lid: $soort_lid <br>
 
                     </div>
                     <div class="knop">
