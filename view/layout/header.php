@@ -23,7 +23,7 @@ session_start();
             
                 <?php
                     if(!isset( $_SESSION['id'])){
-                        echo "<li><a href='../login.php'>Login</a></li>";
+                        echo "<li><a href='login.php'>Login</a></li>";
                     } else {
                         echo "<p>Ingelogd als $_SESSION[id]<p>";
                         echo "<li><a href='leden.php'>Leden</a></li>";
