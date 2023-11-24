@@ -18,7 +18,7 @@ function validateEmail($email){
 }
 
 function emptyinputs(){
-    if(empty($_POST['gb_datum']) || empty($_POST['email']) || empty($_POST['naam'])){
+    if(empty($_POST['gb_datum']) || empty($_POST['email']) || empty($_POST['naam']) || empty($_POST['achternaam'])){
         session_start();
         $_SESSION['message'][] = "Velden zijn niet juist gevuld.";
         header('Location: ../view/signupLid.php');

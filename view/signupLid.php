@@ -15,10 +15,13 @@
 <?php include_once "../controller/errormsg.php";?>
 
 <label for='naam'>Voornaam:</label><br>
-<input type="text" name="naam" placeholder='Gebruikersnaam' ><br>
+<input type="text" name="naam" placeholder='Gebruikersnaam....'><br>
+
+<label for='naam'>Achternaam:</label><br>
+<input type="text" name="achternaam" placeholder='Achternaam....'><br>
 
 <label for='email'>Email:</label><br>
-<input type='email' name='email' placeholder="E-mail"><br>
+<input type='email' name='email' placeholder="E-mail...."><br>
 
 <label for='geboortedatum'>Geboorte Datum:</label><br>
 <input type='date' name='gb_datum'><br>

@@ -46,6 +46,7 @@ function createTableLid(){
   $query = "CREATE TABLE IF NOT EXISTS lid (
     id_lid SMALLINT NOT NULL AUTO_INCREMENT,
     naam VARCHAR(255) NOT NULL,
+    achternaam VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     gb_datum DATE NOT NULL,
     leeftijd INT(50) NOT NULL,

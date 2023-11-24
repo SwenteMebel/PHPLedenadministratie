@@ -1,12 +1,25 @@
 <?php
 
-if(isset($_POST['naam']) || isset($_POST['email']) || isset($_POST['gb_datum'])){
+if(isset($_POST['naam']) || isset($_POST['email']) || isset($_POST['gb_datum']) || isset($_POST['achternaam'])){
 
     if($_POST['naam']){
         //update de leden naam
         $updateLid = sanitiseString($_POST['naam']);
         $queryLid = "UPDATE lid SET naam= '$updateLid' WHERE naam = '$lid';";
         $resultLid = queryMysql($queryLid);
+        session_start();
+        $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";
+        header("Location: ../view/profielLid.php?id=$id");
+    }  else {
+        header("Location: ../view/profielLid.php?id=$id");
+    
+    }
+
+    if($_POST['achternaam']){
+        //update de leden naam
+        $updateAchternaam = sanitiseString($_POST['achternaam']);
+        $queryAchternaam = "UPDATE lid SET achternaam= '$updateAchternaam' WHERE achternaam = '$achternaam';";
+        $resultAchternaam = queryMysql($queryAchternaam);
         session_start();
         $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";
         header("Location: ../view/profielLid.php?id=$id");
@@ -59,6 +72,7 @@ if(isset($_POST['naam']) || isset($_POST['email']) || isset($_POST['gb_datum']))
         header("Location: ../view/profielLid.php?id=$id");
     }
 
+  
 }
 
 

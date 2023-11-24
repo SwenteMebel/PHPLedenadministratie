@@ -51,6 +51,7 @@
             while($data = $result->fetch()) {
                 $id = $data['id_lid'];
                 $gebruikersnaam = $data['naam'];
+                $achternaam = $data['achternaam'];
                 $geboorteDatum = $data['gb_datum'];
                 $leeftijd = $data['leeftijd'];
                 $soort_lid = $data['soort_lid'];
@@ -59,7 +60,7 @@
                 <br>
                 <div class="gebruiker">
                     <div class="gegevens">
-                        Gebruikersnaam: <a href='profielLid.php?id=$id'>$gebruikersnaam</a><br>
+                        Gebruikersnaam: <a href='profielLid.php?id=$id'>$gebruikersnaam $achternaam</a><br>
                         Geboorte Datum: $geboorteDatum <br>
                         Leeftijd: $leeftijd <br>
                         Soort lid: $soort_lid <br>

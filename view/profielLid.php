@@ -12,6 +12,7 @@ $queryLid = "SELECT * FROM lid WHERE id_lid = '$id';";
 $opzetlid = queryMysql($queryLid);
 $resultLid = $opzetlid->fetch();
 $gebruikersnaam = $resultLid['naam'];
+$achternaam = $resultLid['achternaam'];
 $email = $resultLid['email'];
 $geboorteDatum = $resultLid['gb_datum'];
 $leeftijd = $resultLid['leeftijd'];
@@ -25,7 +26,7 @@ echo <<<_END
 
     <div class="profielgegevens">
         <div class="gegevens">
-            Gebruikersnaam: $gebruikersnaam <br>
+            Gebruikersnaam: $gebruikersnaam $achternaam<br>
             Email: $email <br>
             Geboorte datum: $geboorteDatum <br>
             Leeftijd: $leeftijd <br>
@@ -54,6 +55,8 @@ echo <<<_END
         <form method='post' action='../model/wijzigLid.model.php?id=$id'>
             <label for='naam'>Naam wijzigen: $gebruikersnaam</label><br>
             <input type='text' name='naam' placeholder="Wijzig gebruikersnaam"><br><br>
+            <label for='naam'>Achternaam wijzigen: $achternaam</label><br>
+            <input type='text' name='achternaam' placeholder="Wijzig achternaam"><br><br>
             <label>Email wijzigen: $email</label><br>
             <input type='email' name='email' placeholder="Wijzig email"><br><br>
             <label>Geboorte datum Wijzigen: $geboorteDatum</label><br>
