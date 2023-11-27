@@ -2,11 +2,12 @@
 </main>
 <footer>
 
-<svg height:100% width: 100% id="svg" viewBox="0 0 1440 390" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150"><style>
+<svg  height:100% width: 100% id="svg" viewBox="0 0 1440 390" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150"><style>
           .path-0{
             animation:pathAnim-0 4s;
             animation-timing-function: linear;
             animation-iteration-count: infinite;
+          
           }
           @keyframes pathAnim-0{
             0%{

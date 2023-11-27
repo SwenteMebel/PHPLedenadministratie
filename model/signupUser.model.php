@@ -19,6 +19,7 @@ if(isset($_POST['naam']) && isset($_POST['wachtwoord'])){
  
         
     $stmt->execute([$naam, $hashpw]);
+    $stmt = NULL;
     header('Location: ../view/leden.php');
     
 }

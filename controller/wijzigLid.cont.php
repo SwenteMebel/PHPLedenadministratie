@@ -7,6 +7,9 @@ if(isset($_POST['naam']) || isset($_POST['email']) || isset($_POST['gb_datum']) 
         $updateLid = sanitiseString($_POST['naam']);
         $queryLid = "UPDATE lid SET naam= '$updateLid' WHERE naam = '$lid';";
         $resultLid = queryMysql($queryLid);
+        $contquery = "UPDATE contributie SET naam_lid = '$updateLid' WHERE id_contributie = '$id';";
+        $resultcont = queryMysql($contquery);
+
         session_start();
         $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";
         header("Location: ../view/profielLid.php?id=$id");
@@ -61,10 +64,15 @@ if(isset($_POST['naam']) || isset($_POST['email']) || isset($_POST['gb_datum']) 
         $resultLeeftijd = queryMysql($updateLeeftijd);
         $resultDatum = queryMysql($queryDatum);
        
+        //wijzigt soort lid als leeftijd wijzigd.
         $role = roleSet($leeftijd);
         $updateRole = "UPDATE lid SET soort_lid = '$role' WHERE id_lid = '$id';";
         $resultRole = queryMysql($updateRole);
+        
 
+        //contributie wijzigen in contributie table 
+       
+        
         session_start();
         $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";
         header("Location: ../view/profielLid.php?id=$id");
@@ -96,7 +104,5 @@ function roleSet($leeftijd){
       die();
     }
   }
-
-
 
 ?>

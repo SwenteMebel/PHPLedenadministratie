@@ -19,6 +19,7 @@ if(isset($_POST['naam']) && isset($_POST['adres']) && isset($_POST['postcode']))
     $stmt->bindParam(3, $postcode, PDO::PARAM_STR, 10);
         
     $stmt->execute([$naam, $adres, $postcode]);
+    $stmt = NULL;
     header('Location: ../view/leden.php');
     
 }

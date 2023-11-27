@@ -36,21 +36,48 @@ function leetijdCalculatie($gb_datum){
 
 function roleSet($leeftijd){
     $role = ['Jeugd', 'Aspirant', 'Junior', 'Senior','Oudere'];
-    
+
     if($leeftijd < 8){
         return $role[0];
         die();
     } elseif ($leeftijd >= 8 && $leeftijd <= 12) {
        return $role[1];
+       
        die();
     } elseif ($leeftijd >= 13 && $leeftijd <= 17 ){
-        return $role[2];
+        return $role[2]; 
         die();
     } elseif ($leeftijd >= 18 && $leeftijd <= 50) {
         return $role[3];
+        
         die();
     } else {
       return $role[4];
       die();
     }
-  }
+}
+function contributieBedrag($leeftijd){
+    $contributie = 100;
+
+    if($leeftijd < 8){
+        $contributieBedrag = $contributie / 100 * 50;
+        return $contributieBedrag;
+        die();
+    } elseif ($leeftijd >= 8 && $leeftijd <= 12) {
+        $contributieBedrag = $contributie / 100 * 40;
+        return $contributieBedrag;
+       die();
+    } elseif ($leeftijd >= 13 && $leeftijd <= 17 ){
+        $contributieBedrag = $contributie / 100 * 25;
+        return $contributieBedrag;
+        die();
+    } elseif ($leeftijd >= 18 && $leeftijd <= 50) {
+        $contributieBedrag = 100;
+        die();
+    } else {
+        $contributieBedrag = $contributie / 100 * 45;
+        return $contributieBedrag;
+      die();
+    }
+}
+

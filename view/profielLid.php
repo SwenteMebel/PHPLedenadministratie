@@ -17,7 +17,7 @@ $email = $resultLid['email'];
 $geboorteDatum = $resultLid['gb_datum'];
 $leeftijd = $resultLid['leeftijd'];
 $soort_lid = $resultLid['soort_lid']; 
-
+$queryLid = NULL;
 
 
 echo <<<_END

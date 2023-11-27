@@ -87,9 +87,11 @@ function createTableBoekjaar(){
 function createTablecontribute(){
   $query = "CREATE TABLE IF NOT EXISTS contributie (
     id_contributie SMALLINT NOT NULL AUTO_INCREMENT,
+    naam_lid VARCHAR(255) NOT NULL,
+    achternaam_lid VARCHAR(255) NOT NULL,
     leeftijd SMALLINT(100) NOT NULL,
     soortlid VARCHAR(50) NOT NULL,
-    bedrag DECIMAL(20,2) NOT NULL,
+    bedrag INT(100) NOT NULL,
     PRIMARY KEY (id_contributie)
 )"; 
   queryMysql($query);

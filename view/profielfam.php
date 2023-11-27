@@ -14,6 +14,7 @@ $resultFam = $opzetFam->fetch();
 $familie = $resultFam['naam'];
 $adres = $resultFam['adres'];
 $postcode = $resultFam['postcode'];
+$queryFam = NULL;
 
 echo <<<_END
     <div class="profiel">
