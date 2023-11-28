@@ -5,7 +5,7 @@
 function validateEmail($email){
     $queryEmail = queryMysql("SELECT email FROM lid WHERE email = '$email' ;");
     $result = $queryEmail->fetch(PDO::FETCH_ASSOC);
-    $emailval = $result['email'];
+    $emailval = $result;
     
     if($emailval === $email){
         session_start();
@@ -42,20 +42,20 @@ function roleSet($leeftijd){
         die();
     } elseif ($leeftijd >= 8 && $leeftijd <= 12) {
        return $role[1];
-       
        die();
     } elseif ($leeftijd >= 13 && $leeftijd <= 17 ){
         return $role[2]; 
         die();
     } elseif ($leeftijd >= 18 && $leeftijd <= 50) {
         return $role[3];
-        
         die();
     } else {
       return $role[4];
       die();
     }
 }
+
+
 function contributieBedrag($leeftijd){
     $contributie = 100;
 
@@ -64,20 +64,21 @@ function contributieBedrag($leeftijd){
         return $contributieBedrag;
         die();
     } elseif ($leeftijd >= 8 && $leeftijd <= 12) {
-        $contributieBedrag = $contributie / 100 * 40;
+        $contributieBedrag = $contributie / 100 * 60;
+        return $contributieBedrag;
+        die();
+    } elseif ($leeftijd >= 13 && $leeftijd <= 17 ){
+        $contributieBedrag = $contributie / 100 * 75;
         return $contributieBedrag;
        die();
-    } elseif ($leeftijd >= 13 && $leeftijd <= 17 ){
-        $contributieBedrag = $contributie / 100 * 25;
-        return $contributieBedrag;
-        die();
     } elseif ($leeftijd >= 18 && $leeftijd <= 50) {
-        $contributieBedrag = 100;
-        die();
-    } else {
-        $contributieBedrag = $contributie / 100 * 45;
+        $contributieBedrag = $contributie / 100 * 100;
         return $contributieBedrag;
-      die();
+       die();
+    } else {
+        $contributieBedrag = $contributie / 100 * 55;
+        return $contributieBedrag;
+        die();
     }
 }
 

@@ -22,7 +22,7 @@ if(isset($_POST['naam']) && isset($_POST['email']) && isset($_POST['gb_datum']) 
     $stmt->bindParam(2, $achternaam, PDO::PARAM_STR, 255);
     $stmt->bindParam(3, $email, PDO::PARAM_STR, 255);
     $stmt->bindParam(4, $gb_datum, PDO::PARAM_INT, 10);
-    $stmt->bindParam(5, $leeftijd, PDO::PARAM_INT, 100);
+    $stmt->bindParam(5, $leeftijd, PDO::PARAM_INT, 50);
     $stmt->bindParam(6, $role, PDO::PARAM_STR, 50);
 
     $stmt->execute([$naam, $achternaam, $email, $gb_datum, $leeftijd, $role]);
@@ -33,7 +33,7 @@ if(isset($_POST['naam']) && isset($_POST['email']) && isset($_POST['gb_datum']) 
     $stmt1->bindParam(2, $achternaam, PDO::PARAM_STR, 255);
     $stmt1->bindParam(3, $leeftijd, PDO::PARAM_INT, 100);
     $stmt1->bindParam(4, $role, PDO::PARAM_STR, 50);
-    $stmt1->bindParam(5, $contributie, PDO::PARAM_INT, 20,2);
+    $stmt1->bindParam(5, $contributie, PDO::PARAM_INT, 100);
 
     $stmt1->execute([$naam, $achternaam, $leeftijd, $role, $contributie]);
 
