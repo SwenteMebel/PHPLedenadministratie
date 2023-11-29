@@ -5,11 +5,24 @@
 function validateEmail($email){
     $queryEmail = queryMysql("SELECT email FROM lid WHERE email = '$email' ;");
     $result = $queryEmail->fetch(PDO::FETCH_ASSOC);
-    $emailval = $result;
+    $emailval = $result['email'];
     
     if($emailval === $email){
         session_start();
         $_SESSION['message'][] = "Gebruik een andere Email, deze is al in gebruik";
+        header('Location: ../view/signupLid.php');
+        exit();
+    } else {
+        return;
+    }
+}
+
+function familieCheck($achternaam){
+    $query = queryMysql("SELECT * FROM familie WHERE naam = '$achternaam';");
+    $count = $query->rowCount();
+    if($count == 0){
+        session_start();
+        $_SESSION['message'][] = "Familie naam bestaad nog niet, maak eerst een familie aan.";
         header('Location: ../view/signupLid.php');
         exit();
     } else {
@@ -29,8 +42,7 @@ function emptyinputs(){
 function leetijdCalculatie($gb_datum){
     $inputDate = $gb_datum;
     $huidigDate = Date("Y-m-d");
-    $leeftijd = date_diff(date_create($inputDate), date_create($huidigDate));
-    return $leeftijd->format('%y'); 
+    $leeftijd = date_diff(date_create($inputDate), date_create($huidigDate));    
 }
 
 

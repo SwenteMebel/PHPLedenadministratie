@@ -10,15 +10,7 @@
     <div class="overzicht">
         <h1>Contributie</h1>
 
-        <div class="">
-            <form method="post" action="../model/contributieZoek.model.php" >
-                <?php include_once "../controller/errormsg.php";?>
-                <br>
-                <label>Zoek lid, voer naam in:</label><br>
-                <input type='text' name='zoekopdracht' placeholder="Voer naam in...." >
-                <input type='submit' value='Zoeken'>
-            </form>
-        </div>
+        
             <?php
                 while($contData = $opzetContributie->fetch()){
                     $id = $contData['id_contributie'];

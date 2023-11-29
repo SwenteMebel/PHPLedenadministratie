@@ -13,10 +13,12 @@ if(isset($_POST['naam']) && isset($_POST['email']) && isset($_POST['gb_datum']) 
 
     emptyinputs();
     validateEmail($email);
+    familieCheck($achternaam);
     $leeftijd = leetijdCalculatie($gb_datum);
     $role = roleSet($leeftijd);
     $contributie = contributieBedrag($leeftijd);
 
+    //voegt de gemaakte lid toe aan lid table
     $stmt = $pdo->prepare("INSERT INTO lid VALUES(NULL, ?,?,?,?,?,?)");
     $stmt->bindParam(1, $naam, PDO::PARAM_STR, 255);
     $stmt->bindParam(2, $achternaam, PDO::PARAM_STR, 255);
@@ -27,7 +29,7 @@ if(isset($_POST['naam']) && isset($_POST['email']) && isset($_POST['gb_datum']) 
 
     $stmt->execute([$naam, $achternaam, $email, $gb_datum, $leeftijd, $role]);
     
-    
+    // voegt de gemaatke lid toe aan contributie table
     $stmt1= $pdo->prepare("INSERT INTO contributie VALUES(NULL, ?,?,?,?,?)");
     $stmt1->bindParam(1, $naam, PDO::PARAM_STR, 255);
     $stmt1->bindParam(2, $achternaam, PDO::PARAM_STR, 255);
