@@ -49,7 +49,6 @@ function createTableLid(){
     achternaam VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     gb_datum DATE NOT NULL,
-    leeftijd SMALLINT(100) NOT NULL,
     soort_lid VARCHAR(50) NOT NULL,
     PRIMARY KEY (id_lid)
 )"; 
@@ -70,7 +69,9 @@ function createTableFamilie(){
 function createTableSoortLid(){
   $query = "CREATE TABLE IF NOT EXISTS soort (
     id_soort SMALLINT NOT NULL AUTO_INCREMENT,
-    soort VARCHAR(50) NOT NULL ,
+    soort VARCHAR(50) NOT NULL,
+    leeftijd_vanaf SMALLINT(100) NOT NULL,
+    leeftijd_tm SMALLINT(100) NOT NULL,
     PRIMARY KEY (id_soort)
 )"; 
   queryMysql($query);
@@ -89,12 +90,38 @@ function createTablecontribute(){
     id_contributie SMALLINT NOT NULL AUTO_INCREMENT,
     naam_lid VARCHAR(255) NOT NULL,
     achternaam_lid VARCHAR(255) NOT NULL,
-    leeftijd SMALLINT(100) NOT NULL,
-    soortlid VARCHAR(50) NOT NULL,
+    soort_lid VARCHAR(50) NOT NULL,
     bedrag INT(100) NOT NULL,
+    
     PRIMARY KEY (id_contributie)
 )"; 
   queryMysql($query);
 }
 
+
+function contributieBedrag($leeftijd){
+  $contributie = 100;
+
+  if($leeftijd < 8){
+      $contributieBedrag = $contributie / 100 * 50;
+      return $contributieBedrag;
+      die();
+  } elseif ($leeftijd >= 8 && $leeftijd <= 12) {
+      $contributieBedrag = $contributie / 100 * 60;
+      return $contributieBedrag;
+      die();
+  } elseif ($leeftijd >= 13 && $leeftijd <= 17 ){
+      $contributieBedrag = $contributie / 100 * 75;
+      return $contributieBedrag;
+     die();
+  } elseif ($leeftijd >= 18 && $leeftijd <= 50) {
+      $contributieBedrag = $contributie / 100 * 100;
+      return $contributieBedrag;
+     die();
+  } else {
+      $contributieBedrag = $contributie / 100 * 55;
+      return $contributieBedrag;
+      die();
+  }
+}
 

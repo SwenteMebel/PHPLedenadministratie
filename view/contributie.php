@@ -16,8 +16,7 @@
                     $id = $contData['id_contributie'];
                     $voornaam_lid = $contData['naam_lid'];
                     $achternaam_lid = $contData['achternaam_lid'];
-                    $leeftijd = $contData['leeftijd'];
-                    $soort_lid = $contData['soortlid'];
+                    $soort_lid = $contData['soort_lid'];
                     $bedrag = $contData['bedrag'];
 
                     echo <<<_END
@@ -26,7 +25,6 @@
                         <div class="gegevens">
                             Voornaam: $voornaam_lid<br>
                             Achternaam: $achternaam_lid <br>
-                            Leeftijd: $leeftijd <br>
                             Soort lid: $soort_lid<br>
                             Contributie: € $bedrag <br>
                         </div>
@@ -46,4 +44,3 @@
 
 
 
-<?php include_once "layout/footer.php";?>

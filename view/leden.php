@@ -53,7 +53,6 @@
                 $gebruikersnaam = $data['naam'];
                 $achternaam = $data['achternaam'];
                 $geboorteDatum = $data['gb_datum'];
-                $leeftijd = $data['leeftijd'];
                 $soort_lid = $data['soort_lid'];
 
                 echo <<<_END
@@ -62,7 +61,6 @@
                     <div class="gegevens">
                         Gebruikersnaam: <a href='profielLid.php?id=$id'>$gebruikersnaam $achternaam</a><br>
                         Geboorte Datum: $geboorteDatum <br>
-                        Leeftijd: $leeftijd <br>
                         Soort lid: $soort_lid <br>
 
                     </div>

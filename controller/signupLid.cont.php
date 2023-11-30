@@ -42,7 +42,9 @@ function emptyinputs(){
 function leetijdCalculatie($gb_datum){
     $inputDate = $gb_datum;
     $huidigDate = Date("Y-m-d");
-    $leeftijd = date_diff(date_create($inputDate), date_create($huidigDate));    
+    $leeftijdberekening = date_diff(date_create($inputDate), date_create($huidigDate));    
+    $leeftijd = $leeftijdberekening->format('%y');
+    return $leeftijd;
 }
 
 
@@ -67,30 +69,4 @@ function roleSet($leeftijd){
     }
 }
 
-
-function contributieBedrag($leeftijd){
-    $contributie = 100;
-
-    if($leeftijd < 8){
-        $contributieBedrag = $contributie / 100 * 50;
-        return $contributieBedrag;
-        die();
-    } elseif ($leeftijd >= 8 && $leeftijd <= 12) {
-        $contributieBedrag = $contributie / 100 * 60;
-        return $contributieBedrag;
-        die();
-    } elseif ($leeftijd >= 13 && $leeftijd <= 17 ){
-        $contributieBedrag = $contributie / 100 * 75;
-        return $contributieBedrag;
-       die();
-    } elseif ($leeftijd >= 18 && $leeftijd <= 50) {
-        $contributieBedrag = $contributie / 100 * 100;
-        return $contributieBedrag;
-       die();
-    } else {
-        $contributieBedrag = $contributie / 100 * 55;
-        return $contributieBedrag;
-        die();
-    }
-}
 

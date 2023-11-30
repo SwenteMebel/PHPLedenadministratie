@@ -15,7 +15,6 @@ $gebruikersnaam = $resultLid['naam'];
 $achternaam = $resultLid['achternaam'];
 $email = $resultLid['email'];
 $geboorteDatum = $resultLid['gb_datum'];
-$leeftijd = $resultLid['leeftijd'];
 $soort_lid = $resultLid['soort_lid']; 
 $queryLid = NULL;
 
@@ -29,7 +28,6 @@ echo <<<_END
             Gebruikersnaam: $gebruikersnaam $achternaam<br>
             Email: $email <br>
             Geboorte datum: $geboorteDatum <br>
-            Leeftijd: $leeftijd <br>
             Soort lid : $soort_lid <br>
         </div>
         <div class="knop">
@@ -61,7 +59,6 @@ echo <<<_END
             <input type='email' name='email' placeholder="Wijzig email"><br><br>
             <label>Geboorte datum Wijzigen: $geboorteDatum</label><br>
             <input type='date' name='gb_datum' placeholder="Wijzig de geboortedatum"><br><br>
-            <label>Leeftijd: $leeftijd</label><br><br>
             <label>Soort lid: $soort_lid</label><br>
             <br>
             <input type='submit' value='Wijzigen'>

@@ -6,7 +6,7 @@ if(isset($_POST['naam']) || isset($_POST['email']) || isset($_POST['gb_datum']) 
         //update de leden naam
         $updateLid = sanitiseString($_POST['naam']);
         //Update lid naam in lid table
-        $queryLid = "UPDATE lid SET naam= '$updateLid' WHERE naam = '$lid';";
+        $queryLid = "UPDATE lid SET naam= '$updateLid' WHERE id_lid = '$id';";
         $resultLid = queryMysql($queryLid);
         // update lid naam in contributie table
         $contquery = "UPDATE contributie SET naam_lid = '$updateLid' WHERE id_contributie = '$id';";
@@ -24,7 +24,7 @@ if(isset($_POST['naam']) || isset($_POST['email']) || isset($_POST['gb_datum']) 
         //update de leden achternaam
         $updateAchternaam = sanitiseString($_POST['achternaam']);
         //update achternaam van lid table
-        $queryAchternaam = "UPDATE lid SET achternaam= '$updateAchternaam' WHERE achternaam = '$achternaam';";
+        $queryAchternaam = "UPDATE lid SET achternaam= '$updateAchternaam' WHERE id_lid = '$id';";
         $resultAchternaam = queryMysql($queryAchternaam);
         // update achternaam naam in contributie table
         $contquery = "UPDATE contributie SET achternaam_lid = '$updateAchternaam' WHERE id_contributie = '$id';";
@@ -59,27 +59,25 @@ if(isset($_POST['naam']) || isset($_POST['email']) || isset($_POST['gb_datum']) 
     if($_POST['gb_datum']){
         //wijzigt geboorte datum
         $updateGbDatum = sanitiseString($_POST['gb_datum']);
-        $queryDatum = "UPDATE lid SET gb_datum = '$updateGbDatum' WHERE gb_datum = '$gb_datum'";
+        $queryDatum = "UPDATE lid SET gb_datum = '$updateGbDatum' WHERE id_lid = '$id'";
+        $resultDatum = queryMysql($queryDatum);
         
-        //berekend de leeftijd na de datum wijziging. 
+       ///berekend de leeftijd na de datum wijziging. 
         $huidigDate = Date("Y-m-d");
         $leeftijdberekening = date_diff(date_create($updateGbDatum), date_create($huidigDate));
         $leeftijd = $leeftijdberekening->format('%y');
-        $updateLeeftijd = "UPDATE lid SET leeftijd = '$leeftijd' WHERE id_lid = '$id';";
-
         
-        $resultLeeftijd = queryMysql($updateLeeftijd);
-        $resultDatum = queryMysql($queryDatum);
+        
        
         //wijzigt soort lid als leeftijd wijzigd.
         $role = roleSet($leeftijd);
         $updateRole = "UPDATE lid SET soort_lid = '$role' WHERE id_lid = '$id';";
         $resultRole = queryMysql($updateRole);
         
-
         //contributie wijzigen in contributie table 
-       
-        
+        $updatecontRole = "UPDATE contributie SET soort_lid = '$role' WHERE id_contributie = '$id';";
+        $resultcontRole = queryMysql($updatecontRole);
+
         session_start();
         $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";
         header("Location: ../view/profielLid.php?id=$id");
