@@ -39,14 +39,6 @@ function emptyinputs(){
     }
 }
 
-function leetijdCalculatie($gb_datum){
-    $inputDate = $gb_datum;
-    $huidigDate = Date("Y-m-d");
-    $leeftijdberekening = date_diff(date_create($inputDate), date_create($huidigDate));    
-    $leeftijd = $leeftijdberekening->format('%y');
-    return $leeftijd;
-}
-
 
 function roleSet($leeftijd){
     $role = ['Jeugd', 'Aspirant', 'Junior', 'Senior','Oudere'];
@@ -67,6 +59,11 @@ function roleSet($leeftijd){
       return $role[4];
       die();
     }
+}
+
+function convertDate($gb_datum){
+    $originalDate = $gb_datum;
+    $newDate = date("d-m-Y", strtotime($originalDate));
 }
 
 

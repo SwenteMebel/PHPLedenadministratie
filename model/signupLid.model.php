@@ -17,16 +17,18 @@ if(isset($_POST['naam']) && isset($_POST['email']) && isset($_POST['gb_datum']) 
     $leeftijd = leetijdCalculatie($gb_datum);
     $role = roleSet($leeftijd);
     $contributie = contributieBedrag($leeftijd);
+    $date = date("d-m-y");
 
     //voegt de gemaakte lid toe aan lid table
-    $stmt = $pdo->prepare("INSERT INTO lid VALUES(NULL, ?,?,?,?,?)");
+    $stmt = $pdo->prepare("INSERT INTO lid VALUES(NULL, ?,?,?,?,?,?)");
     $stmt->bindParam(1, $naam, PDO::PARAM_STR, 255);
     $stmt->bindParam(2, $achternaam, PDO::PARAM_STR, 255);
     $stmt->bindParam(3, $email, PDO::PARAM_STR, 255);
     $stmt->bindParam(4, $gb_datum, PDO::PARAM_INT, 10);
     $stmt->bindParam(5, $role, PDO::PARAM_STR, 50);
+    $stmt->bindParam(6, $date, PDO::PARAM_INT, 50);
 
-    $stmt->execute([$naam, $achternaam, $email, $gb_datum, $role]);
+    $stmt->execute([$naam, $achternaam, $email, $gb_datum, $role, $date]);
     
     // voegt de gemaatke lid toe aan contributie table
     $stmt1= $pdo->prepare("INSERT INTO contributie VALUES(NULL, ?,?,?,?)");

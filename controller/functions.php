@@ -50,6 +50,7 @@ function createTableLid(){
     email VARCHAR(255) NOT NULL UNIQUE,
     gb_datum DATE NOT NULL,
     soort_lid VARCHAR(50) NOT NULL,
+    aangemaakt DATE DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id_lid)
 )"; 
   queryMysql($query);
@@ -96,6 +97,15 @@ function createTablecontribute(){
     PRIMARY KEY (id_contributie)
 )"; 
   queryMysql($query);
+}
+
+
+function leetijdCalculatie($gb_datum){
+  $inputDate = $gb_datum;
+  $huidigDate = Date("Y-m-d");
+  $leeftijdberekening = date_diff(date_create($inputDate), date_create($huidigDate));   
+  $leeftijd = $leeftijdberekening->format('%y');
+  return $leeftijd;
 }
 
 
