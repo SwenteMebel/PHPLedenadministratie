@@ -28,7 +28,7 @@
                             Voornaam: $voornaam_lid<br>
                             Achternaam: $achternaam_lid <br>
                             Soort lid: $soort_lid<br>
-                            Geboorte Datum: $leeftijd<br>
+                            Leeftijd: $leeftijd<br>
                             Contributie: € $bedrag <br>
                         </div>
                 

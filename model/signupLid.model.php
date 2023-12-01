@@ -17,7 +17,7 @@ if(isset($_POST['naam']) && isset($_POST['email']) && isset($_POST['gb_datum']) 
     $leeftijd = leetijdCalculatie($gb_datum);
     $role = roleSet($leeftijd);
     $contributie = contributieBedrag($leeftijd);
-    $date = date("d-m-y");
+    $date = date('Y-m-d');
 
     //voegt de gemaakte lid toe aan lid table
     $stmt = $pdo->prepare("INSERT INTO lid VALUES(NULL, ?,?,?,?,?,?)");

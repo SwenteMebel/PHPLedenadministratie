@@ -46,11 +46,12 @@ function createTableLid(){
   $query = "CREATE TABLE IF NOT EXISTS lid (
     id_lid SMALLINT NOT NULL AUTO_INCREMENT,
     naam VARCHAR(255) NOT NULL,
-    achternaam VARCHAR(255) NOT NULL,
+    id_familie SMALLINT NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     gb_datum DATE NOT NULL,
     soort_lid VARCHAR(50) NOT NULL,
     aangemaakt DATE DEFAULT CURRENT_TIMESTAMP,
+    id_contributie SMALLINT NOT NULL,
     PRIMARY KEY (id_lid)
 )"; 
   queryMysql($query);
@@ -71,8 +72,7 @@ function createTableSoortLid(){
   $query = "CREATE TABLE IF NOT EXISTS soort (
     id_soort SMALLINT NOT NULL AUTO_INCREMENT,
     soort VARCHAR(50) NOT NULL,
-    leeftijd_vanaf SMALLINT(100) NOT NULL,
-    leeftijd_tm SMALLINT(100) NOT NULL,
+  
     PRIMARY KEY (id_soort)
 )"; 
   queryMysql($query);
@@ -89,9 +89,9 @@ function createTableBoekjaar(){
 function createTablecontribute(){
   $query = "CREATE TABLE IF NOT EXISTS contributie (
     id_contributie SMALLINT NOT NULL AUTO_INCREMENT,
-    naam_lid VARCHAR(255) NOT NULL,
-    achternaam_lid VARCHAR(255) NOT NULL,
-    soort_lid VARCHAR(50) NOT NULL,
+    id_soort SMALLINT NOT NULL, 
+    leeftijd_vanaf SMALLINT(100) NOT NULL,
+    leeftijd_tm SMALLINT(100) NOT NULL,
     bedrag INT(100) NOT NULL,
     
     PRIMARY KEY (id_contributie)

@@ -60,10 +60,3 @@ function roleSet($leeftijd){
       die();
     }
 }
-
-function convertDate($gb_datum){
-    $originalDate = $gb_datum;
-    $newDate = date("d-m-Y", strtotime($originalDate));
-}
-
-
