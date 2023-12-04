@@ -4,7 +4,7 @@
 // Controlleerd of de Email al bestaad
 function validateEmail($email){
     $queryEmail = queryMysql("SELECT email FROM lid WHERE email = '$email' ;");
-    $result = $queryEmail->fetch(PDO::FETCH_ASSOC);
+    $result = $queryEmail->fetch();
     $emailval = $result['email'];
     
     if($emailval === $email){
@@ -41,22 +41,30 @@ function emptyinputs(){
 
 
 function roleSet($leeftijd){
-    $role = ['Jeugd', 'Aspirant', 'Junior', 'Senior','Oudere'];
-
     if($leeftijd < 8){
-        return $role[0];
+        $query = "SELECT id_soort FROM soort WHERE id_soort = 1;";
+        $result = queryMysql($query);
+        return $result;
         die();
     } elseif ($leeftijd >= 8 && $leeftijd <= 12) {
-       return $role[1];
+        $query = "SELECT id_soort FROM soort WHERE id_soort = 2;";
+        $result = queryMysql($query);
+        return $result;
        die();
     } elseif ($leeftijd >= 13 && $leeftijd <= 17 ){
-        return $role[2]; 
+        $query = "SELECT id_soort FROM soort WHERE id_soort = 3;";
+        $result = queryMysql($query);
+        return $result;
         die();
     } elseif ($leeftijd >= 18 && $leeftijd <= 50) {
-        return $role[3];
+        $query = "SELECT id_soort FROM soort WHERE id_soort = 4;";
+        $result = queryMysql($query);
+        return $result;
         die();
     } else {
-      return $role[4];
+        $query = "SELECT id_soort FROM soort WHERE id_soort = 5;";
+        $result = queryMysql($query);
+        return $result;
       die();
     }
 }

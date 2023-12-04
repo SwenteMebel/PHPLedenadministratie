@@ -18,6 +18,7 @@ try{
     createTableLid();
     createTableFamilie();
     createTableSoortLid();
+    addSoortlid();
     createTableBoekjaar();
     createTablecontribute();
 }

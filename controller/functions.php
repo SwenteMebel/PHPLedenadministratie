@@ -40,18 +40,28 @@ function createTableLoginUser(){
     PRIMARY KEY (id_user)
 )"; 
   queryMysql($query);
+  
 }
 
 function createAdminUser($pdo){
-  $user = 'Admin';
-  $ww = 'Admin'; 
-  $hashpw = password_hash($ww, PASSWORD_DEFAULT);
+  $query = "SELECT * FROM user WHERE naam = 'Admin';";
+  $result = queryMysql($query);
+  $count = $result->rowCount();
 
-  $stmt = $pdo->prepare('INSERT INTO user VALUES(NULL, ?,?)');
-  $stmt->bindParam(1, $user, PDO::PARAM_STR, 255);
-  $stmt->bindParam(2, $hashpw, PDO::PARAM_STR, 255);
+  if($count == 0 ){
+    $user = 'Admin';
+    $ww = 'Admin'; 
+    $hashpw = password_hash($ww, PASSWORD_DEFAULT);
 
-  $stmt->execute([$user, $hashpw]);
+    $stmt = $pdo->prepare('INSERT INTO user VALUES(NULL, ?,?)');
+    $stmt->bindParam(1, $user, PDO::PARAM_STR, 255);
+    $stmt->bindParam(2, $hashpw, PDO::PARAM_STR, 255);
+
+    $stmt->execute([$user, $hashpw]);
+  } else {
+    return;
+  }
+
 }
 
 function createTableLid(){
@@ -61,9 +71,8 @@ function createTableLid(){
     id_familie SMALLINT NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     gb_datum DATE NOT NULL,
-    soort_lid VARCHAR(50) NOT NULL,
+    id_soort SMALLINT NOT NULL,
     aangemaakt DATE DEFAULT CURRENT_TIMESTAMP,
-    id_contributie SMALLINT NOT NULL,
     PRIMARY KEY (id_lid)
 )"; 
   queryMysql($query);
@@ -84,41 +93,31 @@ function createTableSoortLid(){
   $query = "CREATE TABLE IF NOT EXISTS soort (
     id_soort SMALLINT NOT NULL AUTO_INCREMENT,
     soort VARCHAR(50) NOT NULL,
-  
+    leeftijd_vanaf SMALLINT(100) NOT NULL,
+    leeftijd_tm SMALLINT(100) NOT NULL,
+    bedrag INT(100) NOT NULL,
     PRIMARY KEY (id_soort)
 )"; 
   queryMysql($query);
+  addSoortlid();
 }
-function addSoortlid($pdo){
-  $jeugd = 'Jeugd';
-  $aspirant = 'Aspirant';
-  $junior = 'Junior';
-  $senior = 'Senior';
-  $oudere = 'Oudere'; 
+function addSoortlid(){
+  $query = "SELECT * FROM soort;";
+  $result = queryMysql($query);
+  $count = $result->rowCount();
   
-
-  $stmt = $pdo->prepare('INSERT INTO soort VALUES(NULL, ?)');
-  $stmt->bindParam(1, $jeugd, PDO::PARAM_STR, 10);
-  $stmt->execute([$jeugd]);
-
-  $stmt = $pdo->prepare('INSERT INTO soort VALUES(NULL, ?)');
-  $stmt->bindParam(1, $aspirant, PDO::PARAM_STR, 10);
-  $stmt->execute([$aspirant]);
-
-  $stmt = $pdo->prepare('INSERT INTO soort VALUES(NULL, ?)');
-  $stmt->bindParam(1, $junior, PDO::PARAM_STR, 10);
-  $stmt->execute([$junior]);
-
-  $stmt = $pdo->prepare('INSERT INTO soort VALUES(NULL, ?)');
-  $stmt->bindParam(1, $senior, PDO::PARAM_STR, 10);
-  $stmt->execute([$senior]);
-
-  $stmt = $pdo->prepare('INSERT INTO soort VALUES(NULL, ?)');
-  $stmt->bindParam(1, $oudere, PDO::PARAM_STR, 10);
-  $stmt->execute([$oudere]);
+  if($count == 0 ){
+    $query= "INSERT INTO `soort` (`id_soort`, `soort`, `leeftijd_vanaf`, `leeftijd_tm`, `bedrag`) VALUES (NULL, 'Jeugd', '0', '8', '50'), 
+    (NULL, 'Aspirant', '9', '12', '60'), 
+    (NULL, 'Junior', '13', '17', '75'), 
+    (NULL, 'Senior', '18', '50', '100'), 
+    (NULL, 'Oudere', '51', '150', '55');";
+    queryMysql($query);
+  } else {
+    return; 
+  }
+ 
 }
-
-
 
 function createTableBoekjaar(){
   $query = "CREATE TABLE IF NOT EXISTS boekjaar (
@@ -133,11 +132,7 @@ function createTablecontribute(){
   $query = "CREATE TABLE IF NOT EXISTS contributie (
     id_contributie SMALLINT NOT NULL AUTO_INCREMENT,
     id_soort SMALLINT NOT NULL, 
-    id_lid SMALLINT NOT NULL,
-    leeftijd_vanaf SMALLINT(100) NOT NULL,
-    leeftijd_tm SMALLINT(100) NOT NULL,
-    bedrag INT(100) NOT NULL,
-    
+    bedrag INT(200) NOT NULL,
     PRIMARY KEY (id_contributie)
 )"; 
   queryMysql($query);
@@ -154,27 +149,31 @@ function leetijdCalculatie($gb_datum){
 
 
 function contributieBedrag($leeftijd){
-  $contributie = 100;
 
   if($leeftijd < 8){
-      $contributieBedrag = $contributie / 100 * 50;
-      return $contributieBedrag;
+      $query = "SELECT bedrag FROM soort WHERE id_soort = 1;";
+      $result = queryMysql($query);
+      return $result;
       die();
   } elseif ($leeftijd >= 8 && $leeftijd <= 12) {
-      $contributieBedrag = $contributie / 100 * 60;
-      return $contributieBedrag;
+      $query = "SELECT bedrag FROM soort WHERE id_soort = 2;";
+      $result = queryMysql($query);
+      return $result;
       die();
   } elseif ($leeftijd >= 13 && $leeftijd <= 17 ){
-      $contributieBedrag = $contributie / 100 * 75;
-      return $contributieBedrag;
+      $query = "SELECT bedrag FROM soort WHERE id_soort = 3;";
+      $result = queryMysql($query);
+      return $result;
      die();
   } elseif ($leeftijd >= 18 && $leeftijd <= 50) {
-      $contributieBedrag = $contributie / 100 * 100;
-      return $contributieBedrag;
+      $query = "SELECT bedrag FROM soort WHERE id_soort = 4;";
+      $result = queryMysql($query);
+      return $result;
      die();
   } else {
-      $contributieBedrag = $contributie / 100 * 55;
-      return $contributieBedrag;
+      $query = "SELECT bedrag FROM soort WHERE id_soort = 5;";
+      $result = queryMysql($query);
+      return $result;
       die();
   }
 }
