@@ -89,6 +89,37 @@ function createTableSoortLid(){
 )"; 
   queryMysql($query);
 }
+function addSoortlid($pdo){
+  $jeugd = 'Jeugd';
+  $aspirant = 'Aspirant';
+  $junior = 'Junior';
+  $senior = 'Senior';
+  $oudere = 'Oudere'; 
+  
+
+  $stmt = $pdo->prepare('INSERT INTO soort VALUES(NULL, ?)');
+  $stmt->bindParam(1, $jeugd, PDO::PARAM_STR, 10);
+  $stmt->execute([$jeugd]);
+
+  $stmt = $pdo->prepare('INSERT INTO soort VALUES(NULL, ?)');
+  $stmt->bindParam(1, $aspirant, PDO::PARAM_STR, 10);
+  $stmt->execute([$aspirant]);
+
+  $stmt = $pdo->prepare('INSERT INTO soort VALUES(NULL, ?)');
+  $stmt->bindParam(1, $junior, PDO::PARAM_STR, 10);
+  $stmt->execute([$junior]);
+
+  $stmt = $pdo->prepare('INSERT INTO soort VALUES(NULL, ?)');
+  $stmt->bindParam(1, $senior, PDO::PARAM_STR, 10);
+  $stmt->execute([$senior]);
+
+  $stmt = $pdo->prepare('INSERT INTO soort VALUES(NULL, ?)');
+  $stmt->bindParam(1, $oudere, PDO::PARAM_STR, 10);
+  $stmt->execute([$oudere]);
+}
+
+
+
 function createTableBoekjaar(){
   $query = "CREATE TABLE IF NOT EXISTS boekjaar (
     id_jaar SMALLINT NOT NULL AUTO_INCREMENT,
@@ -102,6 +133,7 @@ function createTablecontribute(){
   $query = "CREATE TABLE IF NOT EXISTS contributie (
     id_contributie SMALLINT NOT NULL AUTO_INCREMENT,
     id_soort SMALLINT NOT NULL, 
+    id_lid SMALLINT NOT NULL,
     leeftijd_vanaf SMALLINT(100) NOT NULL,
     leeftijd_tm SMALLINT(100) NOT NULL,
     bedrag INT(100) NOT NULL,

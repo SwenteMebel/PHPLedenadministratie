@@ -60,3 +60,9 @@ function roleSet($leeftijd){
       die();
     }
 }
+
+function  getfamID($achternaam){
+    $queryFamId = "SELECT id_familie FROM familie WHERE naam = $achternaam;";
+    return $queryFamId;
+    $queryFamId = NULL;
+}
