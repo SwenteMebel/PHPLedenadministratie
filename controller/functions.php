@@ -42,6 +42,18 @@ function createTableLoginUser(){
   queryMysql($query);
 }
 
+function createAdminUser($pdo){
+  $user = 'Admin';
+  $ww = 'Admin'; 
+  $hashpw = password_hash($ww, PASSWORD_DEFAULT);
+
+  $stmt = $pdo->prepare('INSERT INTO user VALUES(NULL, ?,?)');
+  $stmt->bindParam(1, $user, PDO::PARAM_STR, 255);
+  $stmt->bindParam(2, $hashpw, PDO::PARAM_STR, 255);
+
+  $stmt->execute([$user, $hashpw]);
+}
+
 function createTableLid(){
   $query = "CREATE TABLE IF NOT EXISTS lid (
     id_lid SMALLINT NOT NULL AUTO_INCREMENT,
