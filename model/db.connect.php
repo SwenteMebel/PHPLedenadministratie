@@ -14,6 +14,7 @@ $opts = [
 try{
     $pdo = new PDO($attr, $user, $pass, $opts);
     createTableLoginUser();
+    createAdminUser($pdo);
     createTableLid();
     createTableFamilie();
     createTableSoortLid();
