@@ -148,33 +148,35 @@ function leetijdCalculatie($gb_datum){
 }
 
 
+
 function contributieBedrag($leeftijd){
 
   if($leeftijd < 8){
-      $query = "SELECT bedrag FROM soort WHERE id_soort = 1;";
-      $result = queryMysql($query);
+      $query = queryMysql("SELECT bedrag FROM soort WHERE id_soort = 1;");
+      $result = $query->fetch(PDO::FETCH_ASSOC);
       return $result;
       die();
   } elseif ($leeftijd >= 8 && $leeftijd <= 12) {
-      $query = "SELECT bedrag FROM soort WHERE id_soort = 2;";
-      $result = queryMysql($query);
+      $query = queryMysql("SELECT bedrag FROM soort WHERE id_soort = 2;");
+      $result = $query->fetch(PDO::FETCH_ASSOC);
       return $result;
       die();
   } elseif ($leeftijd >= 13 && $leeftijd <= 17 ){
-      $query = "SELECT bedrag FROM soort WHERE id_soort = 3;";
-      $result = queryMysql($query);
+      $query = queryMysql("SELECT bedrag FROM soort WHERE id_soort = 3;");
+      $result = $query->fetch(PDO::FETCH_ASSOC);
       return $result;
      die();
   } elseif ($leeftijd >= 18 && $leeftijd <= 50) {
-      $query = "SELECT bedrag FROM soort WHERE id_soort = 4;";
-      $result = queryMysql($query);
+      $query = queryMysql("SELECT bedrag FROM soort WHERE id_soort = 4;");
+      $result = $query->fetch(PDO::FETCH_ASSOC);
       return $result;
      die();
   } else {
-      $query = "SELECT bedrag FROM soort WHERE id_soort = 5;";
-      $result = queryMysql($query);
+      $query = queryMysql("SELECT bedrag FROM soort WHERE id_soort = 5;");
+      $result = $query->fetch(PDO::FETCH_ASSOC);
       return $result;
       die();
   }
 }
+
 

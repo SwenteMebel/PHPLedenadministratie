@@ -5,7 +5,7 @@
 function validateEmail($email){
     $queryEmail = queryMysql("SELECT email FROM lid WHERE email = '$email' ;");
     $result = $queryEmail->fetch();
-    $emailval = $result['email'];
+    $emailval = $result;
     
     if($emailval === $email){
         session_start();
@@ -42,35 +42,37 @@ function emptyinputs(){
 
 function roleSet($leeftijd){
     if($leeftijd < 8){
-        $query = "SELECT id_soort FROM soort WHERE id_soort = 1;";
-        $result = queryMysql($query);
+        $query = queryMysql("SELECT id_soort FROM soort WHERE id_soort = 1;");
+        $result = $query->fetch(PDO::FETCH_ASSOC);
         return $result;
         die();
     } elseif ($leeftijd >= 8 && $leeftijd <= 12) {
-        $query = "SELECT id_soort FROM soort WHERE id_soort = 2;";
-        $result = queryMysql($query);
+        $query = queryMysql("SELECT id_soort FROM soort WHERE id_soort = 2;");
+        $result = $query->fetch(PDO::FETCH_ASSOC);
         return $result;
        die();
     } elseif ($leeftijd >= 13 && $leeftijd <= 17 ){
-        $query = "SELECT id_soort FROM soort WHERE id_soort = 3;";
-        $result = queryMysql($query);
+        $query = queryMysql("SELECT id_soort FROM soort WHERE id_soort = 3;");
+        $result = $query->fetch(PDO::FETCH_ASSOC);
         return $result;
         die();
     } elseif ($leeftijd >= 18 && $leeftijd <= 50) {
-        $query = "SELECT id_soort FROM soort WHERE id_soort = 4;";
-        $result = queryMysql($query);
+        $query = queryMysql("SELECT id_soort FROM soort WHERE id_soort = 4;");
+        $result = $query->fetch(PDO::FETCH_ASSOC);
         return $result;
         die();
     } else {
-        $query = "SELECT id_soort FROM soort WHERE id_soort = 5;";
-        $result = queryMysql($query);
+        $query = queryMysql("SELECT id_soort FROM soort WHERE id_soort = 5;");
+        $result = $query->fetch(PDO::FETCH_ASSOC);
         return $result;
-      die();
+        die();
     }
 }
 
 function  getfamID($achternaam){
-    $queryFamId = "SELECT id_familie FROM familie WHERE naam = $achternaam;";
-    return $queryFamId;
-    $queryFamId = NULL;
+    $queryFamId = "SELECT id_familie FROM familie WHERE naam = '$achternaam';";
+    $result = queryMysql($queryFamId);
+    $resultID = $result->fetch();
+    return $resultID;
+    die();
 }
