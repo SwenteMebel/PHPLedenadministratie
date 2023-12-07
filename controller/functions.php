@@ -131,6 +131,7 @@ function createTableBoekjaar(){
 function createTablecontribute(){
   $query = "CREATE TABLE IF NOT EXISTS contributie (
     id_contributie SMALLINT NOT NULL AUTO_INCREMENT,
+    id_lid SMALLINT NOT NULL, 
     id_soort SMALLINT NOT NULL, 
     bedrag INT(200) NOT NULL,
     PRIMARY KEY (id_contributie)
@@ -149,34 +150,5 @@ function leetijdCalculatie($gb_datum){
 
 
 
-function contributieBedrag($leeftijd){
-
-  if($leeftijd < 8){
-      $query = queryMysql("SELECT bedrag FROM soort WHERE id_soort = 1;");
-      $result = $query->fetch(PDO::FETCH_ASSOC);
-      return $result;
-      die();
-  } elseif ($leeftijd >= 8 && $leeftijd <= 12) {
-      $query = queryMysql("SELECT bedrag FROM soort WHERE id_soort = 2;");
-      $result = $query->fetch(PDO::FETCH_ASSOC);
-      return $result;
-      die();
-  } elseif ($leeftijd >= 13 && $leeftijd <= 17 ){
-      $query = queryMysql("SELECT bedrag FROM soort WHERE id_soort = 3;");
-      $result = $query->fetch(PDO::FETCH_ASSOC);
-      return $result;
-     die();
-  } elseif ($leeftijd >= 18 && $leeftijd <= 50) {
-      $query = queryMysql("SELECT bedrag FROM soort WHERE id_soort = 4;");
-      $result = $query->fetch(PDO::FETCH_ASSOC);
-      return $result;
-     die();
-  } else {
-      $query = queryMysql("SELECT bedrag FROM soort WHERE id_soort = 5;");
-      $result = $query->fetch(PDO::FETCH_ASSOC);
-      return $result;
-      die();
-  }
-}
 
 

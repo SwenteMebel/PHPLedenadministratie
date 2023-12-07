@@ -48,12 +48,12 @@
         <?php include_once "../controller/errormsg.php";?>
 
         <?php
-            while($data = $result->fetch()) {
+            while($data = $resultlid->fetch()) {
                 $id = $data['id_lid'];
                 $gebruikersnaam = $data['naam'];
-                $achternaam = $data['achternaam'];
+                $achternaam = $data['id_familie'];
                 $geboorteDatum = $data['gb_datum'];
-                $soort_lid = $data['soort_lid'];
+                $soort_lid = $data['id_soort'];
 
                 echo <<<_END
                 <br>

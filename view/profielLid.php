@@ -12,10 +12,10 @@ $queryLid = "SELECT * FROM lid WHERE id_lid = '$id';";
 $opzetlid = queryMysql($queryLid);
 $resultLid = $opzetlid->fetch();
 $gebruikersnaam = $resultLid['naam'];
-$achternaam = $resultLid['achternaam'];
+$achternaam = $resultLid['id_familie'];
 $email = $resultLid['email'];
 $geboorteDatum = $resultLid['gb_datum'];
-$soort_lid = $resultLid['soort_lid']; 
+$soort_lid = $resultLid['id_soort']; 
 $queryLid = NULL;
 
 

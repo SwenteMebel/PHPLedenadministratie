@@ -2,7 +2,7 @@
 include_once "../controller/functions.php";
 
 $query = 'SELECT * FROM lid';
-$result = $pdo->query($query);
+$resultlid = $pdo->query($query);
 
 if(isset($_POST['delete']) && isset($_POST['idlid'])){
     $idDB = htmlspecialchars($_POST['idlid']);

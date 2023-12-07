@@ -21,24 +21,18 @@ if(isset($_POST['naam']) && isset($_POST['email']) && isset($_POST['gb_datum']) 
     $contributie = contributieBedrag($leeftijd);
     $date = date('Y-m-d');
     
+   
     //voegt de gemaakte lid toe aan lid table
     $stmt = $pdo->prepare("INSERT INTO lid VALUES(NULL, ?,?,?,?,?,?)");
     $stmt->bindParam(1, $naam, PDO::PARAM_STR, 255);
-    $stmt->bindParam(2, $famID, PDO::PARAM_INT, 10);
+    $stmt->bindParam(2, $famID, PDO::PARAM_INT, 100);
     $stmt->bindParam(3, $email, PDO::PARAM_STR, 255);
     $stmt->bindParam(4, $gb_datum, PDO::PARAM_INT, 20);
     $stmt->bindParam(5, $role, PDO::PARAM_STR, 50);
     $stmt->bindParam(6, $date, PDO::PARAM_INT, 50);
 
     $stmt->execute([$naam, $famID, $email, $gb_datum, $role, $date]);
-    
-    // voegt de gemaatke lid toe aan contributie table
-    
-    $stmt1= $pdo->prepare("INSERT INTO contributie VALUES(NULL, ?,?)");
-    $stmt1->bindParam(1, $role, PDO::PARAM_INT, 50);
-    $stmt1->bindParam(2, $contributie, PDO::PARAM_INT, 200);
- 
-    $stmt1->execute([$role, $contributie]);
+
 
     header('Location: ../view/leden.php');
     

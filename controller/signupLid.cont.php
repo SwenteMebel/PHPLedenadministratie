@@ -42,37 +42,86 @@ function emptyinputs(){
 
 function roleSet($leeftijd){
     if($leeftijd < 8){
-        $query = queryMysql("SELECT id_soort FROM soort WHERE id_soort = 1;");
-        $result = $query->fetch(PDO::FETCH_ASSOC);
+        $query = "SELECT id_soort FROM soort WHERE id_soort = 1;";
+        $resultQuery = queryMysql($query);
+        $result = $resultQuery->fetch(PDO::FETCH_BOTH);
         return $result;
         die();
     } elseif ($leeftijd >= 8 && $leeftijd <= 12) {
-        $query = queryMysql("SELECT id_soort FROM soort WHERE id_soort = 2;");
-        $result = $query->fetch(PDO::FETCH_ASSOC);
+        $query = "SELECT id_soort FROM soort WHERE id_soort = 2;";
+        $resultQuery = queryMysql($query);
+        $result = $resultQuery->fetch(PDO::FETCH_BOTH);
         return $result;
        die();
     } elseif ($leeftijd >= 13 && $leeftijd <= 17 ){
-        $query = queryMysql("SELECT id_soort FROM soort WHERE id_soort = 3;");
-        $result = $query->fetch(PDO::FETCH_ASSOC);
+        $query = "SELECT id_soort FROM soort WHERE id_soort = 3;";
+        $resultQuery = queryMysql($query);
+        $result = $resultQuery->fetch(PDO::FETCH_BOTH);
         return $result;
         die();
     } elseif ($leeftijd >= 18 && $leeftijd <= 50) {
-        $query = queryMysql("SELECT id_soort FROM soort WHERE id_soort = 4;");
-        $result = $query->fetch(PDO::FETCH_ASSOC);
+        $query = "SELECT id_soort FROM soort WHERE id_soort = 4;";
+        $resultQuery = queryMysql($query);
+        $result = $resultQuery->fetch(PDO::FETCH_BOTH);
         return $result;
         die();
     } else {
-        $query = queryMysql("SELECT id_soort FROM soort WHERE id_soort = 5;");
-        $result = $query->fetch(PDO::FETCH_ASSOC);
+        $query = "SELECT id_soort FROM soort WHERE id_soort = 5;";
+        $resultQuery = queryMysql($query);
+        $result = $resultQuery->fetch(PDO::FETCH_BOTH);
         return $result;
         die();
     }
 }
 
-function  getfamID($achternaam){
+
+function contributieBedrag($leeftijd){
+
+    if($leeftijd < 8){
+        $query = "SELECT bedrag FROM soort WHERE id_soort = 1;";
+        $resultQuery = queryMysql($query);
+        $result = $resultQuery->fetch(PDO::FETCH_BOTH);
+        return $result;
+        die();
+    } elseif ($leeftijd >= 8 && $leeftijd <= 12) {
+        $query = "SELECT bedrag FROM soort WHERE id_soort = 2;";
+        $resultQuery = queryMysql($query);
+        $result = $resultQuery->fetch(PDO::FETCH_BOTH);
+        return $result;
+        die();
+    } elseif ($leeftijd >= 13 && $leeftijd <= 17 ){
+        $query = "SELECT bedrag FROM soort WHERE id_soort = 3;";
+        $resultQuery = queryMysql($query);
+        $result = $resultQuery->fetch(PDO::FETCH_BOTH);
+        return $result;
+       die();
+    } elseif ($leeftijd >= 18 && $leeftijd <= 50) {
+        $query = "SELECT bedrag FROM soort WHERE id_soort = 4;";
+        $resultQuery = queryMysql($query);
+        $result = $resultQuery->fetch(PDO::FETCH_BOTH);
+        return $result;
+       die();
+    } else {
+        $query = "SELECT bedrag FROM soort WHERE id_soort = 5;";
+        $resultQuery = queryMysql($query);
+        $result = $resultQuery->fetch(PDO::FETCH_BOTH);
+        return $result;
+        die();
+    }
+  }
+
+function getfamID($achternaam){
     $queryFamId = "SELECT id_familie FROM familie WHERE naam = '$achternaam';";
     $result = queryMysql($queryFamId);
-    $resultID = $result->fetch();
+    $resultID = $result->fetchAll(PDO::FETCH_BOTH);
     return $resultID;
     die();
+}
+
+function getLidID($email){
+    $queryLidId = "SELECT id_Lid FROM lid WHERE email = '$email';";
+    $result = queryMysql($queryLidId);
+    $resultID = $result->fetchAll(PDO::FETCH_BOTH);
+    return $resultID;
+    
 }
