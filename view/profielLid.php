@@ -8,14 +8,14 @@
 
 <?php
 $id = $_GET['id'];
-$queryLid = "SELECT * FROM lid WHERE id_lid = '$id';";
+$queryLid = "SELECT * FROM lid JOIN familie ON lid.id_familie= familie.id_familie JOIN soort ON lid.id_soort = soort.id_soort WHERE lid.id_lid = $id;";
 $opzetlid = queryMysql($queryLid);
 $resultLid = $opzetlid->fetch();
-$gebruikersnaam = $resultLid['naam'];
-$achternaam = $resultLid['id_familie'];
+$gebruikersnaam = $resultLid['naam_lid'];
+$achternaam = $resultLid['naam_familie'];
 $email = $resultLid['email'];
 $geboorteDatum = $resultLid['gb_datum'];
-$soort_lid = $resultLid['id_soort']; 
+$soort_lid = $resultLid['soort']; 
 $queryLid = NULL;
 
 

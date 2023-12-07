@@ -6,7 +6,7 @@ $id = $_GET['id'];
 $queryFam = "SELECT * FROM familie WHERE id_familie = '$id';";
 $opzetFam = queryMysql($queryFam);
 $resultFam = $opzetFam->fetch();
-$familie = $resultFam['naam'];
+$familie = $resultFam['naam_familie'];
 $adres = $resultFam['adres'];
 $postcode = $resultFam['postcode'];
 

@@ -32,7 +32,16 @@ if(isset($_POST['naam']) && isset($_POST['email']) && isset($_POST['gb_datum']) 
     $stmt->bindParam(6, $date, PDO::PARAM_INT, 50);
 
     $stmt->execute([$naam, $famID, $email, $gb_datum, $role, $date]);
-
+    $stmt = NULL;
+    // voegt de gemaatke lid toe aan contributie table
+    $lidID = getLidID($email);
+    
+    $stmt1= $pdo->prepare("INSERT INTO contributie VALUES(NULL, ?,?,?)");
+    $stmt1->bindParam(1, $lidID, PDO::PARAM_INT, 100);
+    $stmt1->bindParam(2, $role, PDO::PARAM_INT, 50);
+    $stmt1->bindParam(3, $contributie, PDO::PARAM_INT, 200);
+ 
+    $stmt1->execute([$lidID, $role, $contributie]);
 
     header('Location: ../view/leden.php');
     

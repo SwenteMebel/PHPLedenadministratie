@@ -14,7 +14,7 @@
                 <?php
                     while($famData = $resultFam->fetch()){
                         $famID = $famData['id_familie'];
-                        $famNaam = $famData['naam'];
+                        $famNaam = $famData['naam_familie'];
                         $famAdres = $famData['adres'];
                         $famPostcode = $famData['postcode'];
 
@@ -50,10 +50,10 @@
         <?php
             while($data = $resultlid->fetch()) {
                 $id = $data['id_lid'];
-                $gebruikersnaam = $data['naam'];
-                $achternaam = $data['id_familie'];
+                $gebruikersnaam = $data['naam_lid'];
+                $achternaam = $data['naam_familie'];
                 $geboorteDatum = $data['gb_datum'];
-                $soort_lid = $data['id_soort'];
+                $soort_lid = $data['soort'];
 
                 echo <<<_END
                 <br>

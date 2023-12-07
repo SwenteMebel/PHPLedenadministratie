@@ -13,10 +13,10 @@
         
             <?php
                 while($contData = $opzetContributie->fetch()){
-                    $id = $contData['id_contributie'];
+                    
                     $voornaam_lid = $contData['naam_lid'];
-                    $achternaam_lid = $contData['achternaam_lid'];
-                    $soort_lid = $contData['soort_lid'];
+                    $achternaam_lid = $contData['naam_familie'];
+                    $soort_lid = $contData['soort'];
                     $bedrag = $contData['bedrag'];
                     $gb_datum = $contData['gb_datum'];
                     $leeftijd = leetijdCalculatie($gb_datum);

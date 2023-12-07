@@ -5,7 +5,7 @@ if(isset($_POST['naam']) || isset($_POST['postcode']) || isset($_POST['adres']))
             //update familie naam.
         if(($_POST['naam'])){
             $updateFamNaam = sanitiseString($_POST['naam']);
-            $updateNaam = "UPDATE familie SET naam='$updateFamNaam' WHERE naam='$familie';"; 
+            $updateNaam = "UPDATE familie SET naam_familie ='$updateFamNaam' WHERE naam_familie ='$familie';"; 
             $result = queryMysql($updateNaam);
             session_start();
             $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";
@@ -18,7 +18,7 @@ if(isset($_POST['naam']) || isset($_POST['postcode']) || isset($_POST['adres']))
             //update postcode van familie
         if(($_POST['postcode'])){
             $updateFamPostcode = sanitiseString($_POST['postcode']);
-            $updatePostcode = "UPDATE familie SET postcode='$updateFamPostcode' WHERE postcode='$postcode';";
+            $updatePostcode = "UPDATE familie SET postcode = '$updateFamPostcode' WHERE postcode = '$postcode';";
             $result = queryMysql($updatePostcode);
             session_start();
             $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";
@@ -31,7 +31,7 @@ if(isset($_POST['naam']) || isset($_POST['postcode']) || isset($_POST['adres']))
  
         if(($_POST['adres'])){
             $updateFamAdres = sanitiseString($_POST['adres']);
-            $updateAdres = "UPDATE familie SET adres='$updateFamAdres' WHERE adres='$adres';";
+            $updateAdres = "UPDATE familie SET adres ='$updateFamAdres' WHERE adres ='$adres';";
             $result = queryMysql($updateAdres);
     
             session_start();

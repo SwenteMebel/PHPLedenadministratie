@@ -1,7 +1,7 @@
 <?php
 
 function familiecheck($naam){
-    $query = "SELECT naam FROM familie WHERE naam = '$naam';";
+    $query = "SELECT naam_familie FROM familie WHERE naam_familie = '$naam';";
     $result = queryMysql($query);
     $count = $result->rowCount();
 

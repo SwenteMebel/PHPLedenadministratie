@@ -11,7 +11,7 @@ $id = $_GET['id'];
 $queryFam = "SELECT * FROM familie WHERE id_familie = '$id';";
 $opzetFam = queryMysql($queryFam);
 $resultFam = $opzetFam->fetch();
-$familie = $resultFam['naam'];
+$familie = $resultFam['naam_familie'];
 $adres = $resultFam['adres'];
 $postcode = $resultFam['postcode'];
 $queryFam = NULL;
@@ -19,7 +19,7 @@ $queryFam = NULL;
 echo <<<_END
     <div class="profiel">
         <h1>Familie  $familie</h1>
-
+        <?php include_once "../controller/errormsg.php";?>
         <div class="profielgegevens">
             <div class="gegevens">
                 Familie naam: $familie <br>

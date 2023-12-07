@@ -5,7 +5,7 @@
 function validateEmail($email){
     $queryEmail = queryMysql("SELECT email FROM lid WHERE email = '$email' ;");
     $result = $queryEmail->fetch();
-    $emailval = $result;
+    $emailval = $result['email'];
     
     if($emailval === $email){
         session_start();
@@ -18,7 +18,7 @@ function validateEmail($email){
 }
 
 function familieCheck($achternaam){
-    $query = queryMysql("SELECT * FROM familie WHERE naam = '$achternaam';");
+    $query = queryMysql("SELECT * FROM familie WHERE naam_familie = '$achternaam';");
     $count = $query->rowCount();
     if($count == 0){
         session_start();
@@ -42,34 +42,34 @@ function emptyinputs(){
 
 function roleSet($leeftijd){
     if($leeftijd < 8){
-        $query = "SELECT id_soort FROM soort WHERE id_soort = 1;";
+        $query = "SELECT * FROM soort WHERE id_soort = 1;";
         $resultQuery = queryMysql($query);
-        $result = $resultQuery->fetch(PDO::FETCH_BOTH);
-        return $result;
+        $result = $resultQuery->fetch(PDO::FETCH_ASSOC);
+        return $result['id_soort'];
         die();
     } elseif ($leeftijd >= 8 && $leeftijd <= 12) {
-        $query = "SELECT id_soort FROM soort WHERE id_soort = 2;";
+        $query = "SELECT * FROM soort WHERE id_soort = 2;";
         $resultQuery = queryMysql($query);
-        $result = $resultQuery->fetch(PDO::FETCH_BOTH);
-        return $result;
+        $result = $resultQuery->fetch(PDO::FETCH_ASSOC);
+        return $result['id_soort'];
        die();
     } elseif ($leeftijd >= 13 && $leeftijd <= 17 ){
-        $query = "SELECT id_soort FROM soort WHERE id_soort = 3;";
+        $query = "SELECT * FROM soort WHERE id_soort = 3;";
         $resultQuery = queryMysql($query);
-        $result = $resultQuery->fetch(PDO::FETCH_BOTH);
-        return $result;
+        $result = $resultQuery->fetch(PDO::FETCH_ASSOC);
+        return $result['id_soort'];
         die();
     } elseif ($leeftijd >= 18 && $leeftijd <= 50) {
-        $query = "SELECT id_soort FROM soort WHERE id_soort = 4;";
+        $query = "SELECT * FROM soort WHERE id_soort = 4;";
         $resultQuery = queryMysql($query);
-        $result = $resultQuery->fetch(PDO::FETCH_BOTH);
-        return $result;
+        $result = $resultQuery->fetch(PDO::FETCH_ASSOC);
+        return $result['id_soort'];
         die();
     } else {
-        $query = "SELECT id_soort FROM soort WHERE id_soort = 5;";
+        $query = "SELECT * FROM soort WHERE id_soort = 5;";
         $resultQuery = queryMysql($query);
-        $result = $resultQuery->fetch(PDO::FETCH_BOTH);
-        return $result;
+        $result = $resultQuery->fetch(PDO::FETCH_ASSOC);
+        return $result['id_soort'];
         die();
     }
 }
@@ -78,50 +78,50 @@ function roleSet($leeftijd){
 function contributieBedrag($leeftijd){
 
     if($leeftijd < 8){
-        $query = "SELECT bedrag FROM soort WHERE id_soort = 1;";
+        $query = "SELECT * FROM soort WHERE id_soort = 1;";
         $resultQuery = queryMysql($query);
-        $result = $resultQuery->fetch(PDO::FETCH_BOTH);
-        return $result;
+        $result = $resultQuery->fetch(PDO::FETCH_ASSOC);
+        return $result['bedrag'];
         die();
     } elseif ($leeftijd >= 8 && $leeftijd <= 12) {
-        $query = "SELECT bedrag FROM soort WHERE id_soort = 2;";
+        $query = "SELECT * FROM soort WHERE id_soort = 2;";
         $resultQuery = queryMysql($query);
-        $result = $resultQuery->fetch(PDO::FETCH_BOTH);
-        return $result;
+        $result = $resultQuery->fetch(PDO::FETCH_ASSOC);
+        return $result['bedrag'];
         die();
     } elseif ($leeftijd >= 13 && $leeftijd <= 17 ){
-        $query = "SELECT bedrag FROM soort WHERE id_soort = 3;";
+        $query = "SELECT * FROM soort WHERE id_soort = 3;";
         $resultQuery = queryMysql($query);
-        $result = $resultQuery->fetch(PDO::FETCH_BOTH);
-        return $result;
+        $result = $resultQuery->fetch(PDO::FETCH_ASSOC);
+        return $result['bedrag'];
        die();
     } elseif ($leeftijd >= 18 && $leeftijd <= 50) {
-        $query = "SELECT bedrag FROM soort WHERE id_soort = 4;";
+        $query = "SELECT * FROM soort WHERE id_soort = 4;";
         $resultQuery = queryMysql($query);
-        $result = $resultQuery->fetch(PDO::FETCH_BOTH);
-        return $result;
+        $result = $resultQuery->fetch(PDO::FETCH_ASSOC);
+        return $result['bedrag'];
        die();
     } else {
-        $query = "SELECT bedrag FROM soort WHERE id_soort = 5;";
+        $query = "SELECT * FROM soort WHERE id_soort = 5;";
         $resultQuery = queryMysql($query);
-        $result = $resultQuery->fetch(PDO::FETCH_BOTH);
-        return $result;
+        $result = $resultQuery->fetch(PDO::FETCH_ASSOC);
+        return $result['bedrag'];
         die();
     }
   }
 
 function getfamID($achternaam){
-    $queryFamId = "SELECT id_familie FROM familie WHERE naam = '$achternaam';";
+    $queryFamId = "SELECT * FROM familie WHERE naam_familie = '$achternaam';";
     $result = queryMysql($queryFamId);
-    $resultID = $result->fetchAll(PDO::FETCH_BOTH);
-    return $resultID;
+    $resultID = $result->fetch(PDO::FETCH_ASSOC);
+    return $resultID['id_familie'];
     die();
 }
 
 function getLidID($email){
-    $queryLidId = "SELECT id_Lid FROM lid WHERE email = '$email';";
+    $queryLidId = "SELECT * FROM lid WHERE email = '$email';";
     $result = queryMysql($queryLidId);
-    $resultID = $result->fetchAll(PDO::FETCH_BOTH);
-    return $resultID;
-    
+    $resultID = $result->fetch(PDO::FETCH_ASSOC);
+    return $resultID['id_lid'];
+    die();
 }

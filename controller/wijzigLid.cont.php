@@ -6,7 +6,7 @@ if(isset($_POST['naam']) || isset($_POST['email']) || isset($_POST['gb_datum']) 
         //update de leden naam
         $updateLid = sanitiseString($_POST['naam']);
         //Update lid naam in lid table
-        $queryLid = "UPDATE lid SET naam= '$updateLid' WHERE id_lid = '$id';";
+        $queryLid = "UPDATE lid SET naam_lid = '$updateLid' WHERE id_lid = '$id';";
         $resultLid = queryMysql($queryLid);
         // update lid naam in contributie table
         $contquery = "UPDATE contributie SET naam_lid = '$updateLid' WHERE id_contributie = '$id';";

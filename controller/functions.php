@@ -67,7 +67,7 @@ function createAdminUser($pdo){
 function createTableLid(){
   $query = "CREATE TABLE IF NOT EXISTS lid (
     id_lid SMALLINT NOT NULL AUTO_INCREMENT,
-    naam VARCHAR(255) NOT NULL,
+    naam_lid VARCHAR(255) NOT NULL,
     id_familie SMALLINT NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     gb_datum DATE NOT NULL,
@@ -81,7 +81,7 @@ function createTableLid(){
 function createTableFamilie(){
   $query = "CREATE TABLE IF NOT EXISTS familie (
     id_familie SMALLINT NOT NULL AUTO_INCREMENT,
-    naam VARCHAR(255) NOT NULL UNIQUE,
+    naam_familie VARCHAR(255) NOT NULL UNIQUE,
     adres VARCHAR(255) NOT NULL UNIQUE,
     postcode VARCHAR(10) NOT NULL,
     PRIMARY KEY (id_familie)
