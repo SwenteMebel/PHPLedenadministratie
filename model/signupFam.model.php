@@ -10,7 +10,7 @@ if(isset($_POST['naam']) && isset($_POST['adres']) && isset($_POST['postcode']))
     $adres = sanitiseString($_POST['adres']);
     $postcode = sanitiseString($_POST['postcode']);
     
-    familiecheck($naam);
+    // familiecheck($naam);
     adrescheck($adres);
 
     $stmt = $pdo->prepare('INSERT INTO familie VALUES(NULL, ?,?,?)');

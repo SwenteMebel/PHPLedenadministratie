@@ -8,10 +8,7 @@ if(isset($_POST['naam']) || isset($_POST['email']) || isset($_POST['gb_datum']) 
         //Update lid naam in lid table
         $queryLid = "UPDATE lid SET naam_lid = '$updateLid' WHERE id_lid = '$id';";
         $resultLid = queryMysql($queryLid);
-        // update lid naam in contributie table
-        $contquery = "UPDATE contributie SET naam_lid = '$updateLid' WHERE id_contributie = '$id';";
-        $resultcont = queryMysql($contquery);
-
+    
         session_start();
         $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";
         header("Location: ../view/profielLid.php?id=$id");
@@ -24,11 +21,8 @@ if(isset($_POST['naam']) || isset($_POST['email']) || isset($_POST['gb_datum']) 
         //update de leden achternaam
         $updateAchternaam = sanitiseString($_POST['achternaam']);
         //update achternaam van lid table
-        $queryAchternaam = "UPDATE lid SET achternaam= '$updateAchternaam' WHERE id_lid = '$id';";
+        $queryAchternaam = "UPDATE familie SET naam_familie = '$updateAchternaam' WHERE naam_familie = '$achternaam';";
         $resultAchternaam = queryMysql($queryAchternaam);
-        // update achternaam naam in contributie table
-        $contquery = "UPDATE contributie SET achternaam_lid = '$updateAchternaam' WHERE id_contributie = '$id';";
-        $resultcont = queryMysql($contquery);
 
         session_start();
         $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";

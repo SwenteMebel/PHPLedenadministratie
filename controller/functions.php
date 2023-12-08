@@ -81,7 +81,7 @@ function createTableLid(){
 function createTableFamilie(){
   $query = "CREATE TABLE IF NOT EXISTS familie (
     id_familie SMALLINT NOT NULL AUTO_INCREMENT,
-    naam_familie VARCHAR(255) NOT NULL UNIQUE,
+    naam_familie VARCHAR(255) NOT NULL,
     adres VARCHAR(255) NOT NULL UNIQUE,
     postcode VARCHAR(10) NOT NULL,
     PRIMARY KEY (id_familie)
@@ -123,6 +123,7 @@ function createTableBoekjaar(){
   $query = "CREATE TABLE IF NOT EXISTS boekjaar (
     id_jaar SMALLINT NOT NULL AUTO_INCREMENT,
     jaar INT(4) NOT NULL,
+    bedrag_jaar BIGINT NOT NULL,
     PRIMARY KEY (id_jaar)
 )"; 
   queryMysql($query);

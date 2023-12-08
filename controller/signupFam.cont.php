@@ -1,5 +1,5 @@
 <?php
-
+/* deze functie niet meer nodig, er kunnen meerdere familie namen op een ander adres wonen. 
 function familiecheck($naam){
     $query = "SELECT naam_familie FROM familie WHERE naam_familie = '$naam';";
     $result = queryMysql($query);
@@ -13,9 +13,8 @@ function familiecheck($naam){
      } else {
         return; 
      }
-
 }
-
+*/
 function adrescheck($adres){
     $query = "SELECT adres FROM familie WHERE adres = '$adres';";
     $result = queryMysql($query);
