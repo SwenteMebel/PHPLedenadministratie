@@ -7,13 +7,10 @@ $resultbedrag = queryMysql($querybedrag);
 $bedrag = $resultbedrag->fetch(PDO::FETCH_ASSOC);
 $getyear = date('y');
 
-checkyear($getyear);
+checkyear($getyear, $bedrag, $pdo);
 
-$stmt = $pdo->prepare("INSERT INTO boekjaar VALUES(NULL, ?,?);");
-$stmt->bindParam(1, $getyear , PDO::PARAM_INT);
-$stmt->bindParam(2, $bedrag, PDO::PARAM_INT);
+$quryUpdate =  "UPDATE boekjaar SET bedrag_jaar = '$bedrag' WHERE bedrag_jaar = '$bedrag';";
 
-$stmt->execute([$getyear, $bedrag]);
 
 $query = "SELECT * FROM boekjaar";
 $result = queryMysql($query);
