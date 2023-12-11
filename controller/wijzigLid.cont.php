@@ -69,7 +69,7 @@ if(isset($_POST['naam']) || isset($_POST['email']) || isset($_POST['gb_datum']) 
         $resultRole = queryMysql($updateRole);
         
         //contributie wijzigen in contributie table 
-        $updatecontRole = "UPDATE contributie SET soort_lid = '$role' WHERE id_contributie = '$id';";
+        $updatecontRole = "UPDATE contributie SET soort = '$role' WHERE id_contributie = '$id';";
         $resultcontRole = queryMysql($updatecontRole);
 
         session_start();

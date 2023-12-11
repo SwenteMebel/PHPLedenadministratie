@@ -11,6 +11,7 @@ $email = $resultLid['email'];
 $gb_datum = $resultLid['gb_datum'];
 $leeftijd = $resultLid['leeftijd'];
 $soort_lid = $resultLid['soort_lid'];
+$achternaam = $resultLid['naam_familie'];
 
 
 include_once "../controller/wijzigLid.cont.php";

@@ -2,15 +2,16 @@
 include_once "../controller/functions.php";
 include_once "../controller/boekjaar.cont.php";
 
-$querybedrag = "SELECT SUM(bedrag) FROM contributie";
+$querybedrag = "SELECT SUM(bedrag) AS total FROM contributie";
 $resultbedrag = queryMysql($querybedrag);
 $bedrag = $resultbedrag->fetch(PDO::FETCH_ASSOC);
-$getyear = date('y');
 
-checkyear($getyear, $bedrag, $pdo);
+$getyear = date('Y');
 
-$quryUpdate =  "UPDATE boekjaar SET bedrag_jaar = '$bedrag' WHERE bedrag_jaar = '$bedrag';";
+updateyear($pdo, $getyear, $bedrag);
 
+$updateQuery = "UPDATE boekjaar SET bedrag_jaar = '$bedrag[total]' WHERE jaar = '$getyear';";
+queryMysql($updateQuery); 
 
 $query = "SELECT * FROM boekjaar";
 $result = queryMysql($query);
