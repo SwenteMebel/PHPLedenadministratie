@@ -11,7 +11,8 @@ $getyear = date('Y');
 updateyear($pdo, $getyear, $bedrag);
 
 $updateQuery = "UPDATE boekjaar SET bedrag_jaar = '$bedrag[total]' WHERE jaar = '$getyear';";
-queryMysql($updateQuery); 
+queryMysql($updateQuery);
+$updateQuery = NULL; 
 
 $query = "SELECT * FROM boekjaar";
 $result = queryMysql($query);

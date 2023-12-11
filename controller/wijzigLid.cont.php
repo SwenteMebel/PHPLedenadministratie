@@ -65,11 +65,14 @@ if(isset($_POST['naam']) || isset($_POST['email']) || isset($_POST['gb_datum']) 
        
         //wijzigt soort lid als leeftijd wijzigd.
         $role = roleSet($leeftijd);
-        $updateRole = "UPDATE lid SET soort_lid = '$role' WHERE id_lid = '$id';";
+        $getRole = "SELECT id_soort FROM soort WHERE soort = '$role';";
+        $getroleid = queryMysql($getRole);
+        $updateRole = "UPDATE lid SET id_soort = '$getroleid' WHERE id_lid = '$id';";
         $resultRole = queryMysql($updateRole);
         
         //contributie wijzigen in contributie table 
-        $updatecontRole = "UPDATE contributie SET soort = '$role' WHERE id_contributie = '$id';";
+
+        $updatecontRole = "UPDATE soort SET soort = '$role' WHERE id_contributie = '$id';";
         $resultcontRole = queryMysql($updatecontRole);
 
         session_start();
@@ -78,9 +81,8 @@ if(isset($_POST['naam']) || isset($_POST['email']) || isset($_POST['gb_datum']) 
     }   else {
         header("Location: ../view/profielLid.php?id=$id");
     }
-
-  
 }
+
 
 
 function roleSet($leeftijd){

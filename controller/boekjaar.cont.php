@@ -13,6 +13,7 @@ function updateyear($pdo, $year, $bedrag){
         $stmt->bindParam(2, $bedrag, PDO::PARAM_INT);
 
         $stmt->execute([$year, $bedrag]);
+        $stmt = NULL;
         return;
     }
 }
