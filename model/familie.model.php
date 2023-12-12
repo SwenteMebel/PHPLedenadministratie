@@ -1,28 +1,43 @@
 <?php
 include_once "../controller/functions.php";
 
-$queryFam = "SELECT * FROM familie";
-$resultFam = $pdo->query($queryFam);
-
-if(isset($_POST['delete']) && isset($_POST['idfam'])){
-    $idDB = htmlspecialchars($_POST['idfam']);
-
+class familieModel extends DBConnect {
+    public $resultfam;
     
-    $query = "SELECT * FROM lid WHERE id_familie = $idDB"; 
-    $result = queryMysql($query);
-    $count = $result->rowCount();
 
-    if($count > 0 ){
-        session_start(); 
-        $_SESSION['message'] [] = "Verwijder eerst de leden van de familie.";
-        header("Location: ../view/leden.php");
-        exit();
-    } else{
-        $query = "DELETE FROM familie WHERE id_familie = $idDB";
-        $result = queryMysql($query);
-        header('Location: ../view/leden.php');
-        die();
+
+    public function queryFam(){
+        $this->resultfam = $this->pdo->query('SELECT * FROM familie');
+       
+    }
+    public function getResultFam(){
+        return $this->resultfam;
     }
 
-    
+    public function deleteFam(){
+
+        if(isset($_POST['delete']) && isset($_POST['idfam'])){
+            $idDB = htmlspecialchars($_POST['idfam']);
+        
+            $query = "SELECT * FROM lid WHERE id_familie = $idDB"; 
+            $result = $this->pdo->prepare($query);
+            $result->execute();
+            $count = $result->rowCount();
+        
+            if($count > 0 ){
+                session_start(); 
+                $_SESSION['message'] [] = "Verwijder eerst de leden van de familie.";
+                header("Location: ../view/leden.php");
+                exit();
+            } else{
+                $query = "DELETE FROM familie WHERE id_familie = $idDB";
+                $result = $this->pdo->prepare($query);
+                $result->execute();
+                header('Location: ../view/leden.php');
+                die();
+            }
+        }
+    }
 }
+
+

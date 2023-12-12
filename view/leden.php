@@ -12,12 +12,18 @@
             <h1>Familie Overzicht</h1>
             <?php include_once "../controller/errormsg.php";?>
                 <?php
-                    while($famData = $resultFam->fetch()){
+                    $DBqueryfam = new familieModel();
+                    $DBqueryfam->queryFam();
+                    $resultFam = $DBqueryfam->getResultFam();
+                    
+
+                    while($famData = $resultFam->fetch(PDO::FETCH_ASSOC)){
                         $famID = $famData['id_familie'];
                         $famNaam = $famData['naam_familie'];
                         $famAdres = $famData['adres'];
                         $famPostcode = $famData['postcode'];
 
+    
                         echo <<<_END
                         <br>
                         <div class="gebruiker">
@@ -48,7 +54,11 @@
         <?php include_once "../controller/errormsg.php";?>
 
         <?php
-            while($data = $resultlid->fetch()) {
+            $DBquerylid = new ledenModel();
+            $DBquerylid->queryLid();
+            $resultlid = $DBquerylid->getResultLid();
+
+            while($data = $resultlid->fetch(PDO::FETCH_ASSOC)) {
                 $id = $data['id_lid'];
                 $gebruikersnaam = $data['naam_lid'];
                 $achternaam = $data['naam_familie'];
