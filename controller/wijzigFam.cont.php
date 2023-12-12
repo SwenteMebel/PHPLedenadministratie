@@ -5,7 +5,7 @@ if(isset($_POST['naam']) || isset($_POST['postcode']) || isset($_POST['adres']))
             //update familie naam.
         if(($_POST['naam'])){
             $updateFamNaam = sanitiseString($_POST['naam']);
-            $updateNaam = "UPDATE familie SET naam_familie ='$updateFamNaam' WHERE naam_familie ='$familie';"; 
+            $updateNaam = "UPDATE familie SET naam_familie ='$updateFamNaam' WHERE id_familie ='$id';"; 
             $result = queryMysql($updateNaam);
             session_start();
             $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";

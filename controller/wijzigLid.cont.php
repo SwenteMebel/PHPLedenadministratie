@@ -20,15 +20,18 @@ if(isset($_POST['naam']) || isset($_POST['email']) || isset($_POST['gb_datum']) 
     if($_POST['achternaam']){
         //update de leden achternaam
         $updateAchternaam = sanitiseString($_POST['achternaam']);
-        //update achternaam van lid table
-        $queryAchternaam = "UPDATE familie SET naam_familie = '$updateAchternaam' WHERE naam_familie = '$achternaam';";
+        //update id_familie van lid table
+        $queryNieuwFamid = "SELECT id_familie AS id FROM familie WHERE naam_familie = '$updateAchternaam';";
+        $getNieuwFamid = queryMysql($queryNieuwFamid);
+        $nieuwID = $getNieuwFamid->fetch(PDO::FETCH_ASSOC);
+        $queryAchternaam = "UPDATE lid SET id_familie = '$nieuwID[id]' WHERE id_lid = '$id';";
         $resultAchternaam = queryMysql($queryAchternaam);
 
         session_start();
         $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";
         header("Location: ../view/profielLid.php?id=$id");
     }  else {
-        header("Location: ../view/profielLid.php?id=$id");
+         header("Location: ../view/profielLid.php?id=$id");
     
     }
 
@@ -65,15 +68,11 @@ if(isset($_POST['naam']) || isset($_POST['email']) || isset($_POST['gb_datum']) 
        
         //wijzigt soort lid als leeftijd wijzigd.
         $role = roleSet($leeftijd);
-        $getRole = "SELECT id_soort FROM soort WHERE soort = '$role';";
+        $getRole = "SELECT id_soort AS id FROM soort WHERE soort = '$role';";
         $getroleid = queryMysql($getRole);
-        $updateRole = "UPDATE lid SET id_soort = '$getroleid' WHERE id_lid = '$id';";
+        $nieuwRoleID = $getroleid->fetch(PDO::FETCH_ASSOC);
+        $updateRole = "UPDATE lid SET id_soort = '$nieuwRoleID[id]' WHERE id_lid = '$id';";
         $resultRole = queryMysql($updateRole);
-        
-        //contributie wijzigen in contributie table 
-
-        $updatecontRole = "UPDATE soort SET soort = '$role' WHERE id_contributie = '$id';";
-        $resultcontRole = queryMysql($updatecontRole);
 
         session_start();
         $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";
