@@ -9,7 +9,7 @@
 
 
 
-<form class='form'method='post' action='../model/signupUser.model.php'>
+<form class='form'method='post' action='../handler/signupUser.handler.php'>
 <h1>Login user aanmaken</h1>
 <?php include_once "../controller/errormsg.php";?>
 <label for='naam'>Voornaam:</label><br>
