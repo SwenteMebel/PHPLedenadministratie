@@ -4,7 +4,7 @@
 
 
 
-<form class='form' method='post' action='../model/login.model.php'>
+<form class='form' method='post' action='../handler/login.handler.php'>
 <h1>Login</h1>
 <?php include "../controller/errormsg.php";?>
 <br>

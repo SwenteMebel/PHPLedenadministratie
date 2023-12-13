@@ -10,7 +10,7 @@
 
 
 
-<form class='form'method='post' action='../model/signupLid.model.php'>
+<form class='form'method='post' action='../handler/signupLid.handler.php'>
 <h1>Nieuw lid toevoegen</h1>
 <?php include_once "../controller/errormsg.php";?>
 

@@ -9,7 +9,7 @@
 
 
 
-<form class='form'method='post' action='../model/signupFam.model.php'>
+<form class='form'method='post' action='../handler/signupFam.handler.php'>
 <h1>Nieuwe Familie toevoegen</h1>
 <?php include_once "../controller/errormsg.php";?>
 <label for='naam'>Familie naam:</label><br>

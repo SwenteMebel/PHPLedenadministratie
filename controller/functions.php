@@ -1,8 +1,9 @@
 <?php
 include_once "../model/db.connect.php";
 
+class functions extends DBConnect {
 
-  function destroySession()
+  public static function destroySession()
   {
     $_SESSION=array();
   
@@ -13,33 +14,34 @@ include_once "../model/db.connect.php";
   }
   
   //Queryt de database met de data
-  function queryMysql($query)
+  public static function queryMysql($query)
   {
     global $pdo;
     return $pdo->query($query);
   }
   
-  
-  function sanitiseString($var)
+  // Deze misschien niet nodig, hou het in de gaten. 
+  public function sanitiseString($var)
   {
-    global $pdo;
-  
     $var = strip_tags($var);
     $var = htmlentities($var);
     $var = stripslashes($var);
   
-    $result = $pdo->quote($var);          // This adds single quotes
+    $result = $this->pdo->query($var);          // This adds single quotes
     return str_replace("'", "", $result); // So now remove them
   }
 
   
-  function leetijdCalculatie($gb_datum){
+  public static function leetijdCalculatie($gb_datum){
     $inputDate = $gb_datum;
     $huidigDate = Date("Y-m-d");
     $leeftijdberekening = date_diff(date_create($inputDate), date_create($huidigDate));   
     $leeftijd = $leeftijdberekening->format('%y');
     return $leeftijd;
   }
+
+}
+  
 
 
 
