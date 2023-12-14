@@ -1,6 +1,7 @@
 <?php include_once "layout/header.php";?>
 <?php include_once "../model/leden.model.php";?>
-<?php include_once "../model/profielLid.model.php"?>
+<?php include_once "../model/profielLid.model.php"?> 
+
 <?php
     if(!isset($_SESSION['id'])){
         header('Location: login.php');
@@ -40,7 +41,7 @@ echo <<<_END
             Soort lid : $soort_lid <br>
         </div>
         <div class="knop">
-            <form method='post' action='../model/leden.model.php'>
+            <form method='post' action='../handler/deleteLid.handler.php'>
             <input type='hidden' name='delete'>
             <input type='hidden' name='idlid' value='$id'>
             <input type='submit' value='Verwijder $gebruikersnaam'>
@@ -79,5 +80,3 @@ _END;
     
 
 
-
-<?php include_once "layout/footer.php";?>

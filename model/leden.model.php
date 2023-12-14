@@ -24,6 +24,8 @@ class ledenModel extends DBConnect  {
             $querydb = $this->pdo->prepare($queryCont);
             $querydb->execute();
     
+            session_start();
+            $_SESSION['message'] [] = "Gebruiker verwijderd.";
             header('Location: ../view/leden.php');
         }
       

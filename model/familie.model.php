@@ -33,6 +33,8 @@ class familieModel extends DBConnect {
                 $query = "DELETE FROM familie WHERE id_familie = $idDB";
                 $result = $this->pdo->prepare($query);
                 $result->execute();
+                session_start();
+                $_SESSION['message'] [] = "Familie verwijderd.";
                 header('Location: ../view/leden.php');
                 die();
             }

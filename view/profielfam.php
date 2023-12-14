@@ -1,5 +1,7 @@
 <?php include_once "layout/header.php";?>
 <?php include_once "../model/leden.model.php";?>
+<?php include_once "../model/profielFam.model.php"?>
+
 <?php
     if(!isset($_SESSION['id'])){
         header('Location: login.php');
@@ -8,13 +10,19 @@
 
 <?php
 $id = $_GET['id'];
-$queryFam = "SELECT * FROM familie WHERE id_familie = '$id';";
-$opzetFam = queryMysql($queryFam);
-$resultFam = $opzetFam->fetch();
-$familie = $resultFam['naam_familie'];
-$adres = $resultFam['adres'];
-$postcode = $resultFam['postcode'];
-$queryFam = NULL;
+
+$sanitizedId = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
+$queryFam = new profielfamMod();
+$queryFam->queryFamprofiel($sanitizedId);
+$stmt = $queryFam->getFamprofiel();
+
+$resultFam = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$familie = isset($resultFam['naam_familie']) ? $resultFam['naam_familie'] : '';
+$adres = isset($resultFam['adres']) ? $resultFam['adres'] : '' ;
+$postcode = isset($resultFam['postcode']) ? $resultFam['postcode'] : '';
+
+
 
 echo <<<_END
     <div class="profiel">
@@ -27,7 +35,7 @@ echo <<<_END
                 Postcode : $postcode <br>
             </div>
             <div class="knop">
-                <form method='post' action='../model/familie.model.php'>
+                <form method='post' action='../handler/deleteFam.handler.php'>
                 <input type='hidden' name='delete'>
                 <input type='hidden' name='idfam' value='$id'>
                 <input type='submit' value='Verwijder $familie'>
@@ -63,4 +71,3 @@ _END;
 
 
 
-<?php include_once "layout/footer.php";?>
