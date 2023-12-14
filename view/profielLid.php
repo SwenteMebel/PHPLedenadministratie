@@ -60,7 +60,7 @@ include_once "../controller/errormsg.php";
 echo <<<_END
 <h1>Wijziging van $gebruikersnaam</h1>
     <div class="profielgegevens">
-        <form method='post' action='../model/wijzigLid.model.php?id=$id'>
+        <form method='post' action='../handler/wijziglid.handler.php?id=$id'>
             <label for='naam'>Naam wijzigen: $gebruikersnaam</label><br>
             <input type='text' name='naam' placeholder="Wijzig gebruikersnaam"><br><br>
             <label for='naam'>Achternaam wijzigen: $achternaam</label><br>
