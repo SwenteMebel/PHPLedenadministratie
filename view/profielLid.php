@@ -1,25 +1,31 @@
 <?php include_once "layout/header.php";?>
 <?php include_once "../model/leden.model.php";?>
+<?php include_once "../model/profielLid.model.php"?>
 <?php
     if(!isset($_SESSION['id'])){
         header('Location: login.php');
+        exit();
     } 
 ?>
 
 <?php
 
 $id = $_GET['id'];
-$query= "SELECT * FROM lid JOIN familie ON lid.id_familie= familie.id_familie JOIN soort ON lid.id_soort = soort.id_soort WHERE lid.id_lid = :id ;";
-$stmt = $this->pdo->prepare($query); // hij kent de $this niet, hoe kan ik hier connectie maken met een class DBConnecnt {....} 
-$stmt->bindParam(':id', $id);
-$stmt->execute();
-$resultLid = $stmt->fetch(PDO::FETCH_ASSOC);
-$gebruikersnaam = $resultLid['naam_lid'];
-$achternaam = $resultLid['naam_familie'];
-$email = $resultLid['email'];
-$geboorteDatum = $resultLid['gb_datum'];
-$soort_lid = $resultLid['soort']; 
-$queryLid = NULL;
+
+$sanitizedId = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
+
+$querylid = new profielLidMod();
+$querylid->queryLidprofiel($sanitizedId);
+$stmt = $querylid->getLidprofiel();
+
+$lidProfiel = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Controleer of de elementen bestaan voordat je ze toewijst
+$gebruikersnaam = isset($lidProfiel['naam_lid']) ? $lidProfiel['naam_lid'] : '';
+$achternaam = isset($lidProfiel['naam_familie']) ? $lidProfiel['naam_familie'] : '';
+$email = isset($lidProfiel['email']) ? $lidProfiel['email'] : '';
+$geboorteDatum = isset($lidProfiel['gb_datum']) ? $lidProfiel['gb_datum'] : '';
+$soort_lid = isset($lidProfiel['soort']) ? $lidProfiel['soort'] : '';
 
 
 echo <<<_END

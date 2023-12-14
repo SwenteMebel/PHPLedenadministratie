@@ -15,6 +15,7 @@
             $DBqueryboek->queryBoekjaar();
             $result = $DBqueryboek->getBoekjaar(); 
 
+            
            while($data = $result->fetch(PDO::FETCH_ASSOC)){
                 $jaar = $data['jaar'];
                 $bedrag = $data['bedrag_jaar'];
