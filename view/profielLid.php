@@ -7,10 +7,13 @@
 ?>
 
 <?php
+
 $id = $_GET['id'];
-$queryLid = "SELECT * FROM lid JOIN familie ON lid.id_familie= familie.id_familie JOIN soort ON lid.id_soort = soort.id_soort WHERE lid.id_lid = $id;";
-$opzetlid = queryMysql($queryLid);
-$resultLid = $opzetlid->fetch();
+$query= "SELECT * FROM lid JOIN familie ON lid.id_familie= familie.id_familie JOIN soort ON lid.id_soort = soort.id_soort WHERE lid.id_lid = :id ;";
+$stmt = $this->pdo->prepare($query); // hij kent de $this niet, hoe kan ik hier connectie maken met een class DBConnecnt {....} 
+$stmt->bindParam(':id', $id);
+$stmt->execute();
+$resultLid = $stmt->fetch(PDO::FETCH_ASSOC);
 $gebruikersnaam = $resultLid['naam_lid'];
 $achternaam = $resultLid['naam_familie'];
 $email = $resultLid['email'];

@@ -12,14 +12,18 @@
 
         
             <?php
-                while($contData = $opzetContributie->fetch()){
+                $DBqueryCont = new ContributieModel();
+                $DBqueryCont->queryCont();
+                $opzetContributie = $DBqueryCont->getCont();
+
+                while($contData = $opzetContributie->fetch(PDO::FETCH_ASSOC)){
                     
                     $voornaam_lid = $contData['naam_lid'];
                     $achternaam_lid = $contData['naam_familie'];
                     $soort_lid = $contData['soort'];
                     $bedrag = $contData['bedrag'];
                     $gb_datum = $contData['gb_datum'];
-                    $leeftijd = leetijdCalculatie($gb_datum);
+                    $leeftijd = functions::leetijdCalculatie($gb_datum);
 
                     echo <<<_END
                     <br>
