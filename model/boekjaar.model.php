@@ -2,21 +2,33 @@
 include_once "../controller/functions.php";
 include_once "../controller/boekjaar.cont.php";
 
-$querybedrag = "SELECT SUM(bedrag) AS totaal FROM contributie";
-$resultbedrag = queryMysql($querybedrag);
-$bedrag = $resultbedrag->fetch(PDO::FETCH_ASSOC);
+class boekjaarModel extends DBConnect {
 
-$getyear = date('Y');
+    public $boekjaarBedrag; 
+    private $tijdelijkbedrag;
+    private $updateQuery;
 
-updateyear($pdo, $getyear, $bedrag);
+    public function queryBoekjaar(){
+        $stmt = $this->pdo->query("SELECT SUM(bedrag) AS totaal FROM contributie;");
+        $bedrag = $stmt->fetch(PDO::FETCH_ASSOC);
+        $bedragreslt = $bedrag['totaal'];
+        $getyear = date('Y');
+        boekjaarCont::updateyear($this->pdo, $getyear, $bedragreslt);
+        boekjaarCont::updateBedrag($this->pdo, $getyear, $bedragreslt);
+        
 
-//controlleert elke keer als de pagina boekjaar wordt geopent of er wijzigingen zijn in het contributie bedrag
-$updateQuery = "UPDATE boekjaar SET bedrag_jaar = '$bedrag[totaal]' WHERE jaar = '$getyear';";
-queryMysql($updateQuery);
-$updateQuery = NULL; 
+        $this->boekjaarBedrag = $this->pdo->query("SELECT * FROM boekjaar;");
+        
+    }
+    
+    public function getBoekjaar(){
+        return $this->boekjaarBedrag;
+    }
+  
 
-$query = "SELECT * FROM boekjaar";
-$result = queryMysql($query);
+}
+
+
 
 
 

@@ -11,7 +11,11 @@
         <h1>Boekjaar</h1>
  
         <?php
-           while($data = $result->fetch()){
+            $DBqueryboek = new boekjaarModel();
+            $DBqueryboek->queryBoekjaar();
+            $result = $DBqueryboek->getBoekjaar(); 
+
+           while($data = $result->fetch(PDO::FETCH_ASSOC)){
                 $jaar = $data['jaar'];
                 $bedrag = $data['bedrag_jaar'];
             
