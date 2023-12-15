@@ -1,8 +1,8 @@
 <?php
 
+class wijzigLidCont extends wijzigLidModel {
 
-
-function roleSet($leeftijd){
+  public static function roleSet($leeftijd){
     $role = ['Jeugd', 'Aspirant', 'Junior', 'Senior','Oudere'];
     
     if($leeftijd < 8){
@@ -22,5 +22,9 @@ function roleSet($leeftijd){
       die();
     }
   }
+
+}
+
+
 
 ?>

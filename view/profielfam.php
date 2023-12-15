@@ -53,7 +53,7 @@ echo <<<_END
 echo <<<_END
         <h1>Wijzig familie $familie</h1>
         <div class="profielgegevens">
-            <form method='post' action='../model/wijzigFam.model.php?id=$id'>
+            <form method='post' action='../handler/wijzigfam.handler.php?id=$id'>
                 <label for='naam'>Familie naam: $familie</label><br>
                 <input type='text' name='naam' placeholder="Wijzig familie naam"><br><br>
                 <label>Adres wijzigen: $adres</label><br>

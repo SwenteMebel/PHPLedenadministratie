@@ -53,13 +53,19 @@ class wijzigLidModel extends DBConnect {
 
             if($_POST['achternaam']){
                 //update de leden achternaam
-                $updateAchternaam = sanitiseString($_POST['achternaam']);
+                $updateAchternaam = $_POST['achternaam'];
                 //update id_familie van lid table
-                $queryNieuwFamid = "SELECT id_familie AS id FROM familie WHERE naam_familie = '$updateAchternaam';";
-                $getNieuwFamid = queryMysql($queryNieuwFamid);
-                $nieuwID = $getNieuwFamid->fetch(PDO::FETCH_ASSOC);
-                $queryAchternaam = "UPDATE lid SET id_familie = '$nieuwID[id]' WHERE id_lid = '$id';";
-                $resultAchternaam = queryMysql($queryAchternaam);
+                $queryNieuwFamid = "SELECT id_familie AS id FROM familie WHERE naam_familie = :updateAchternaam;";
+                $stmt = $this->pdo->prepare($queryNieuwFamid);
+                $stmt->bindParam(':updateAchternaam', $updateAchternaam);
+                $stmt->execute();
+
+    
+                $nieuwID = $stmt->fetch(PDO::FETCH_ASSOC);
+                $queryAchternaam = "UPDATE lid SET id_familie = '$nieuwID[id]' WHERE id_lid = :id;";
+                $stmt = $this->pdo->prepare($queryAchternaam);
+                $stmt->bindParam(':id', $id);
+                $stmt->execute();
 
                 session_start();
                 $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";
@@ -71,48 +77,65 @@ class wijzigLidModel extends DBConnect {
 
             if($_POST['email']){
                 //update email van het lid en controlleert of die nog niet bestaad
-                $updateEmail = sanitiseString($_POST['email']);
-                $checkEmail = "SELECT * FROM lid WHERE email = '$updateEmail';";
-                $check = queryMysql($checkEmail);
-                $count = $check->rowCount();
+                $updateEmail = $_POST['email'];
+                $checkEmail = "SELECT * FROM lid WHERE email = :updateEmail;";
+                $stmt = $this->pdo->prepare($checkEmail);
+                $stmt->bindParam(':updateEmail', $updateEmail);
+                $stmt->execute();
+
+                $count = $stmt->rowCount();
                 if($count > 0 ){
                     session_start();
                     $_SESSION['message'] [] = "Email adres is al in gebruik.";
                     header("Location: ../view/profielLid.php?id=$id");
-                } 
-                $queryEmail = "UPDATE lid SET email = '$updateEmail' WHERE email = '$email'";
-                $resultEmail = queryMysql($queryEmail);
-                session_start();
-                $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";
-                header("Location: ../view/profielLid.php?id=$id");
+                } else {
+                    $queryEmail = "UPDATE lid SET email = :updateEmail WHERE email = :email";
+                    $stmt = $this->pdo->prepare($queryEmail);
+                    $stmt->bindParam(':updateEmail', $updateEmail);
+                    $stmt->bindParam(':email', $this->email);
+                    $stmt->execute();
+                
+                    session_start();
+                    $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";
+                    header("Location: ../view/profielLid.php?id=$id");
+                }
+               
             }   
 
             if($_POST['gb_datum']){
                 //wijzigt geboorte datum
-                $updateGbDatum = sanitiseString($_POST['gb_datum']);
-                $queryDatum = "UPDATE lid SET gb_datum = '$updateGbDatum' WHERE id_lid = '$id'";
-                $resultDatum = queryMysql($queryDatum);
+                $updateGbDatum = $_POST['gb_datum'];
+                $queryDatum = "UPDATE lid SET gb_datum = :updateGbDatum WHERE id_lid = :id;";
+                $stmt = $this->pdo->prepare($queryDatum);
+                $stmt->bindParam(':updateGbDatum', $updateGbDatum);
+                $stmt->bindParam(':id', $id);
+                $stmt->execute();
                 
-            ///berekend de leeftijd na de datum wijziging. 
+                
+                //berekend de leeftijd na de datum wijziging. 
                 $huidigDate = Date("Y-m-d");
                 $leeftijdberekening = date_diff(date_create($updateGbDatum), date_create($huidigDate));
                 $leeftijd = $leeftijdberekening->format('%y');
-                
-                
-            
+              
                 //wijzigt soort lid als leeftijd wijzigd.
-                $role = roleSet($leeftijd);
-                $getRole = "SELECT id_soort AS id FROM soort WHERE soort = '$role';";
-                $getroleid = queryMysql($getRole);
-                $nieuwRoleID = $getroleid->fetch(PDO::FETCH_ASSOC);
-                $updateRole = "UPDATE lid SET id_soort = '$nieuwRoleID[id]' WHERE id_lid = '$id';";
-                $resultRole = queryMysql($updateRole);
+                $rol = wijzigLidCont::roleSet($leeftijd);
+                $getRole = "SELECT id_soort AS id FROM soort WHERE soort = :rol;";
+                $stmt = $this->pdo->prepare($getRole);
+                $stmt->bindParam(':rol', $rol);
+                $stmt->execute();
+                
+                $nieuwRoleID = $stmt->fetch(PDO::FETCH_ASSOC)['id'];
+                $updateRole = "UPDATE lid SET id_soort = :nieuwRoleID WHERE id_lid = :id;";
+                $stmt = $this->pdo->prepare($updateRole);
+                $stmt->bindParam(':nieuwRoleID', $nieuwRoleID);
+                $stmt->bindParam(':id', $id);
+                $stmt->execute();
 
                 session_start();
                 $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";
-                header("Location: ../view/profielLid.php?id=$id");
+                //header("Location: ../view/profielLid.php?id=$id");
             }   else {
-                header("Location: ../view/profielLid.php?id=$id");
+                //header("Location: ../view/profielLid.php?id=$id");
             }
         }
     }
