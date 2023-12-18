@@ -1,5 +1,6 @@
 <?php
 include_once "../controller/functions.php";
+include_once "../controller/wijzigLid.cont.php";
 
 class wijzigLidModel extends DBConnect {
 
@@ -24,9 +25,7 @@ class wijzigLidModel extends DBConnect {
         $this->lid = $result['naam_lid'];
         $this->email= $result['email'];
         $this->gb_datum = $result['gb_datum'];
-        $this->leeftijd = $result['leeftijd'];
-        $this->soort_lid = $result['soort_lid'];
-        $this->achternaam = $result['achternaam'];
+      
     }
 
     public function wijzigingLid($id){
@@ -59,19 +58,25 @@ class wijzigLidModel extends DBConnect {
                 $stmt = $this->pdo->prepare($queryNieuwFamid);
                 $stmt->bindParam(':updateAchternaam', $updateAchternaam);
                 $stmt->execute();
+                $count = $stmt->rowCount();
 
+                if($count > 0 ){
+                    $nieuwID = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $queryAchternaam = "UPDATE lid SET id_familie = '$nieuwID[id]' WHERE id_lid = :id;";
+                    $stmt = $this->pdo->prepare($queryAchternaam);
+                    $stmt->bindParam(':id', $id);
+                    $stmt->execute();
     
-                $nieuwID = $stmt->fetch(PDO::FETCH_ASSOC);
-                $queryAchternaam = "UPDATE lid SET id_familie = '$nieuwID[id]' WHERE id_lid = :id;";
-                $stmt = $this->pdo->prepare($queryAchternaam);
-                $stmt->bindParam(':id', $id);
-                $stmt->execute();
-
-                session_start();
-                $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";
-                header("Location: ../view/profielLid.php?id=$id");
+                    session_start();
+                    $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";
+                    header("Location: ../view/profielLid.php?id=$id");
+                } else {
+                    session_start();
+                    $_SESSION['message'] [] = "Familie naam bestaad nog niet, maak eerst een familie.";
+                    header("Location: ../view/profielLid.php?id=$id");
+                }
             }  else {
-                header("Location: ../view/profielLid.php?id=$id");
+                //header("Location: ../view/profielLid.php?id=$id");
             
             }
 
@@ -119,12 +124,14 @@ class wijzigLidModel extends DBConnect {
               
                 //wijzigt soort lid als leeftijd wijzigd.
                 $rol = wijzigLidCont::roleSet($leeftijd);
+                echo " de Rol uit de functie $rol <br>";
                 $getRole = "SELECT id_soort AS id FROM soort WHERE soort = :rol;";
                 $stmt = $this->pdo->prepare($getRole);
                 $stmt->bindParam(':rol', $rol);
                 $stmt->execute();
-                
                 $nieuwRoleID = $stmt->fetch(PDO::FETCH_ASSOC)['id'];
+                echo "$nieuwRoleID is het ID van role id uit de db ";
+                
                 $updateRole = "UPDATE lid SET id_soort = :nieuwRoleID WHERE id_lid = :id;";
                 $stmt = $this->pdo->prepare($updateRole);
                 $stmt->bindParam(':nieuwRoleID', $nieuwRoleID);
@@ -133,9 +140,9 @@ class wijzigLidModel extends DBConnect {
 
                 session_start();
                 $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";
-                //header("Location: ../view/profielLid.php?id=$id");
+                header("Location: ../view/profielLid.php?id=$id");
             }   else {
-                //header("Location: ../view/profielLid.php?id=$id");
+                header("Location: ../view/profielLid.php?id=$id");
             }
         }
     }
