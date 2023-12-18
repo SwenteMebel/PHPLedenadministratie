@@ -5,7 +5,7 @@ class DBConnect {
     protected $host = 'localhost'; // URL of IP adres van de DB
     protected $user = 'root'; // Gebruikersnaam van de DB gebruiker (admin)
     protected $pass = '';   // Wachtwoord van de DB gebruiker
-    protected $dbname = 'phpeindopdracht'; //DATABASE naam
+    protected $dbname = 'ledenadministratie'; //DATABASE naam
     protected $chrs = 'utf8mb4';
     protected $opts = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -85,7 +85,7 @@ class DBConnect {
     protected function createTableFamilie(){
         $query = "CREATE TABLE IF NOT EXISTS familie (
             id_familie SMALLINT NOT NULL AUTO_INCREMENT,
-            naam_familie VARCHAR(255) NOT NULL,
+            naam_familie VARCHAR(255) NOT NULL UNIQUE,
             adres VARCHAR(255) NOT NULL UNIQUE,
             postcode VARCHAR(10) NOT NULL,
             PRIMARY KEY (id_familie)
