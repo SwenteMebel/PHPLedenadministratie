@@ -33,26 +33,32 @@ class wijzigLidModel extends DBConnect {
             
         if(isset($_POST['naam']) || isset($_POST['email']) || isset($_POST['gb_datum']) || isset($_POST['achternaam'])){
 
-            if($_POST['naam']){
+            $updateLid = trim($_POST['naam'], " ");
+            $updateAchternaam = trim($_POST['achternaam'] , " ");
+            $updateEmail = trim($_POST['email'], " ");
+            $updateGbDatum = trim($_POST['gb_datum'], " ");
+
+
+            if(!empty($updateLid)){
                 //update de leden naam
-                $updateLid = $_POST['naam'];
+
                 //Update lid naam in lid table
                 $queryLid = "UPDATE lid SET naam_lid = '$updateLid' WHERE id_lid = :id ;";
                 $stmt = $this->pdo->prepare($queryLid);
                 $stmt->bindParam(':id', $id);
                 $stmt->execute();
             
-                session_start();
-                $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";
+                
                 header("Location: ../view/profielLid.php?id=$id");
             }  else {
+                session_start();
+                $_SESSION['message'] [] = "Veld mag niet leeg zijn";
                 header("Location: ../view/profielLid.php?id=$id");
-            
             }
 
-            if($_POST['achternaam']){
+            if($updateAchternaam){
                 //update de leden achternaam
-                $updateAchternaam = $_POST['achternaam'];
+                
                 //update id_familie van lid table
                 $queryNieuwFamid = "SELECT id_familie AS id FROM familie WHERE naam_familie = :updateAchternaam;";
                 $stmt = $this->pdo->prepare($queryNieuwFamid);
@@ -76,13 +82,13 @@ class wijzigLidModel extends DBConnect {
                     header("Location: ../view/profielLid.php?id=$id");
                 }
             }  else {
-                //header("Location: ../view/profielLid.php?id=$id");
+                header("Location: ../view/profielLid.php?id=$id");
             
             }
 
             if($_POST['email']){
                 //update email van het lid en controlleert of die nog niet bestaad
-                $updateEmail = $_POST['email'];
+                
                 $checkEmail = "SELECT * FROM lid WHERE email = :updateEmail;";
                 $stmt = $this->pdo->prepare($checkEmail);
                 $stmt->bindParam(':updateEmail', $updateEmail);
@@ -104,12 +110,11 @@ class wijzigLidModel extends DBConnect {
                     $_SESSION['message'] [] = "Wijziging door gevoerd, controleer wijziging.";
                     header("Location: ../view/profielLid.php?id=$id");
                 }
-               
+                
             }   
 
             if($_POST['gb_datum']){
                 //wijzigt geboorte datum
-                $updateGbDatum = $_POST['gb_datum'];
                 $queryDatum = "UPDATE lid SET gb_datum = :updateGbDatum WHERE id_lid = :id;";
                 $stmt = $this->pdo->prepare($queryDatum);
                 $stmt->bindParam(':updateGbDatum', $updateGbDatum);
@@ -121,7 +126,7 @@ class wijzigLidModel extends DBConnect {
                 $huidigDate = Date("Y-m-d");
                 $leeftijdberekening = date_diff(date_create($updateGbDatum), date_create($huidigDate));
                 $leeftijd = $leeftijdberekening->format('%y');
-              
+                
                 //wijzigt soort lid als leeftijd wijzigd.
                 $rol = wijzigLidCont::roleSet($leeftijd);
                 $getRole = "SELECT id_soort AS id FROM soort WHERE soort = :rol;";
@@ -129,7 +134,7 @@ class wijzigLidModel extends DBConnect {
                 $stmt->bindParam(':rol', $rol);
                 $stmt->execute();
                 $nieuwRoleID = $stmt->fetch(PDO::FETCH_ASSOC)['id'];
-               
+                
                 
                 $updateRole = "UPDATE lid SET id_soort = :nieuwRoleID WHERE id_lid = :id;";
                 $stmt = $this->pdo->prepare($updateRole);

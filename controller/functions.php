@@ -13,24 +13,6 @@ class functions extends DBConnect {
     session_destroy();
   }
   
-  //Queryt de database met de data
-  public static function queryMysql($query)
-  {
-    global $pdo;
-    return $pdo->query($query);
-  }
-  
-  // Deze misschien niet nodig, hou het in de gaten. 
-  public function sanitiseString($var)
-  {
-    $var = strip_tags($var);
-    $var = htmlentities($var);
-    $var = stripslashes($var);
-  
-    $result = $this->pdo->query($var);          // This adds single quotes
-    return str_replace("'", "", $result); // So now remove them
-  }
-
   
   public static function leetijdCalculatie($gb_datum){
     $inputDate = $gb_datum;

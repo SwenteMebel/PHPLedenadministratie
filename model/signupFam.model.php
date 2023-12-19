@@ -9,24 +9,29 @@ class SignUpFamMod extends DBConnect {
         SignupFamCont::emptycheck();
         if(isset($_POST['naam']) && isset($_POST['adres']) && isset($_POST['postcode'])){
         
-            $naam = $_POST['naam'];
-            $adres = $_POST['adres'];
-            $postcode = $_POST['postcode'];
+            $naam = rtrim($_POST['naam']," ");
+            $adres = rtrim($_POST['adres'], " ");
+            $postcode = rtrim($_POST['postcode'], " ");
             
-            // familie adres check
-            
-            SignupFamCont::adrescheck($adres, $this->pdo);
+            if(!empty($naam) || !empty($adres) || !empty($postcode)){
+                // familie adres check
+                SignupFamCont::adrescheck($adres, $this->pdo);
     
-            $query = 'INSERT INTO familie VALUES(NULL, ?,?,?);';
-            $stmt = $this->pdo->prepare($query);
-            $stmt->bindParam(1, $naam, PDO::PARAM_STR, 255);
-            $stmt->bindParam(2, $adres, PDO::PARAM_STR, 255);
-            $stmt->bindParam(3, $postcode, PDO::PARAM_STR, 10);
-                
-            $stmt->execute([$naam, $adres, $postcode]);
-            $stmt = NULL;
-            header('Location: ../view/leden.php');
+                $query = 'INSERT INTO familie VALUES(NULL, ?,?,?);';
+                $stmt = $this->pdo->prepare($query);
+                $stmt->bindParam(1, $naam, PDO::PARAM_STR, 255);
+                $stmt->bindParam(2, $adres, PDO::PARAM_STR, 255);
+                $stmt->bindParam(3, $postcode, PDO::PARAM_STR, 10);
+                    
+                $stmt->execute([$naam, $adres, $postcode]);
+                $stmt = NULL;
+                header('Location: ../view/leden.php');
+            } else {
+                session_start();
+                $_SESSION['message'] [] = "Velden mogen niet leeg zijn.";
+                header("Location: ../view/signupFam.php");
             
+            }
         }
     }
 

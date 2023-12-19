@@ -15,7 +15,7 @@
 <?php include_once "../controller/errormsg.php";?>
 
 <label for='naam'>Voornaam:</label><br>
-<input type="text" name="naam" placeholder='Gebruikersnaam....'><br>
+<input type="text" name="naam" placeholder='Voornaam....'><br>
 
 <label for='naam'>Achternaam:</label><br>
 <input type="text" name="achternaam" placeholder='Achternaam....'><br>

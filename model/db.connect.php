@@ -85,9 +85,9 @@ class DBConnect {
     protected function createTableFamilie(){
         $query = "CREATE TABLE IF NOT EXISTS familie (
             id_familie SMALLINT NOT NULL AUTO_INCREMENT,
-            naam_familie VARCHAR(255) NOT NULL UNIQUE,
+            naam_familie VARCHAR(255) NOT NULL,
             adres VARCHAR(255) NOT NULL UNIQUE,
-            postcode VARCHAR(10) NOT NULL,
+            postcode VARCHAR(6) NOT NULL,
             PRIMARY KEY (id_familie)
         )"; 
            $stmt = $this->pdo->prepare($query);
