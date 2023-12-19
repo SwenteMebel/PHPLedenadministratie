@@ -124,16 +124,34 @@ class wijzigLidModel extends DBConnect {
               
                 //wijzigt soort lid als leeftijd wijzigd.
                 $rol = wijzigLidCont::roleSet($leeftijd);
-                echo " de Rol uit de functie $rol <br>";
                 $getRole = "SELECT id_soort AS id FROM soort WHERE soort = :rol;";
                 $stmt = $this->pdo->prepare($getRole);
                 $stmt->bindParam(':rol', $rol);
                 $stmt->execute();
                 $nieuwRoleID = $stmt->fetch(PDO::FETCH_ASSOC)['id'];
-                echo "$nieuwRoleID is het ID van role id uit de db ";
+               
                 
                 $updateRole = "UPDATE lid SET id_soort = :nieuwRoleID WHERE id_lid = :id;";
                 $stmt = $this->pdo->prepare($updateRole);
+                $stmt->bindParam(':nieuwRoleID', $nieuwRoleID);
+                $stmt->bindParam(':id', $id);
+                $stmt->execute();
+
+                $getBedrag = "SELECT bedrag AS bedrag FROM soort WHERE soort = :rol;";
+                $stmt = $this->pdo->prepare($getBedrag);
+                $stmt->bindParam(':rol', $rol);
+                $stmt->execute();
+                $nieuwBedrag = $stmt->fetch(PDO::FETCH_ASSOC)['bedrag'];
+
+                $upddateContributie = "UPDATE contributie SET bedrag = :nieuwBedrag WHERE id_lid = :id;";
+                $stmt= $this->pdo->prepare($upddateContributie);
+                $stmt->bindParam(':nieuwBedrag', $nieuwBedrag);
+                $stmt->bindParam(':id', $id);
+                $stmt->execute();
+
+
+                $upddateContributie = "UPDATE contributie SET id_soort = :nieuwRoleID WHERE id_lid = :id;";
+                $stmt= $this->pdo->prepare($upddateContributie);
                 $stmt->bindParam(':nieuwRoleID', $nieuwRoleID);
                 $stmt->bindParam(':id', $id);
                 $stmt->execute();

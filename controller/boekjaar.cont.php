@@ -17,14 +17,14 @@ class boekjaarCont {
             $stmt->bindParam(2, $bedrag, PDO::PARAM_INT);
     
             $stmt->execute([$year, $bedrag]);
-            $stmt = NULL;
-            return;
+           
         }
     }
 
     public static function updateBedrag($pdo, $year, $bedrag){
-        $stmt = $pdo->prepare("UPDATE boekjaar SET bedrag_jaar = :bedrag WHERE jaar = '$year';");
+        $stmt = $pdo->prepare("UPDATE boekjaar SET bedrag_jaar = :bedrag WHERE jaar = :jaar;");
         $stmt->bindParam(':bedrag', $bedrag );
+        $stmt->bindParam(':jaar', $year);
         $stmt->execute();
     }
 }

@@ -1,5 +1,5 @@
 <?php
-
+// niet geintergreerd 
 // Zoekfunctie in contributie overzicht
 function emptyZoekopdracht(){
     if(empty($_POST['zoekopdracht'])){

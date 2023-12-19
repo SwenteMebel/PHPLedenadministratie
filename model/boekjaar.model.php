@@ -13,8 +13,9 @@ class boekjaarModel extends DBConnect {
         $bedrag = $stmt->fetch(PDO::FETCH_ASSOC);
         $bedragreslt = $bedrag['totaal'];
         $getyear = date('Y');
-        boekjaarCont::updateyear($this->pdo, $getyear, $bedragreslt);
         boekjaarCont::updateBedrag($this->pdo, $getyear, $bedragreslt);
+        boekjaarCont::updateyear($this->pdo, $getyear, $bedragreslt);
+       
         
 
         $this->boekjaarBedrag = $this->pdo->query("SELECT * FROM boekjaar;");
