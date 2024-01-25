@@ -3,10 +3,10 @@
 
 <h3>Applicatie</h3>
 * Na het starten van de applicatie hoef je alleen maar in XAMPP een DB te maken met de naam ledenadministratie<br>
-      - De applicatie zorgt ervoor dat er een login user word aangemaakt<br>
-              - GB: Admin<br>
-              - WW: Admin (Hoofdletter gevoelig)<br>
-      - De applicatie zorgt ervoor dat de juiste tabels gemaakt worden met de juiste data.<br>
+      --- De applicatie zorgt ervoor dat er een login user word aangemaakt<br>
+              ------ GB: Admin<br>
+              ------ WW: Admin (Hoofdletter gevoelig)<br>
+      ---- De applicatie zorgt ervoor dat de juiste tabels gemaakt worden met de juiste data.<br>
 * Log in :D WHOOOO!!!<br>
 
 <h3>Lenden</h3>
